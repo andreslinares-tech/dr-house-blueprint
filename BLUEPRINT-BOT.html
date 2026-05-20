@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blueprint · Adrián · Dr House Bienes Raíces</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Source+Serif+4:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Geist', system-ui, sans-serif; font-feature-settings: 'cv11', 'ss01'; }
+    .font-mono { font-family: 'Geist Mono', ui-monospace, monospace; }
+    .serif-italic { font-family: 'Source Serif 4', Georgia, serif; font-style: italic; }
+    html { scroll-behavior: smooth; }
+    .grain::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; opacity: 0.012; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .toc-link { transition: color 0.15s, border-color 0.15s; }
+    .toc-link:hover { color: rgb(255 255 255); border-left-color: rgb(139 92 246); }
+    .toc-link.sub { padding-left: 28px; font-size: 12px; }
+    .diagram-card { background: rgba(9,9,11,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 24px; padding: 32px; }
+    .action-card { background: rgba(9,9,11,0.5); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; position: relative; }
+    .action-card + .action-card { margin-top: 12px; }
+    .action-grid { display: grid; grid-template-columns: 220px 1fr; gap: 14px 18px; align-items: start; }
+    @media (max-width: 768px) { .action-grid { grid-template-columns: 1fr; gap: 4px; } }
+    .pill { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-family: 'Geist Mono', ui-monospace, monospace; }
+    .pill-violet { background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); color: rgb(196,181,253); }
+    .pill-amber  { background: rgba(245,158,11,0.15);  border: 1px solid rgba(245,158,11,0.3);  color: rgb(252,211,77); }
+    .pill-cyan   { background: rgba(6,182,212,0.15);   border: 1px solid rgba(6,182,212,0.3);   color: rgb(165,243,252); }
+    .pill-emerald{ background: rgba(16,185,129,0.15);  border: 1px solid rgba(16,185,129,0.3);  color: rgb(167,243,208); }
+    .pill-rose   { background: rgba(244,63,94,0.15);   border: 1px solid rgba(244,63,94,0.3);   color: rgb(253,164,175); }
+    .pill-blue   { background: rgba(59,130,246,0.15);  border: 1px solid rgba(59,130,246,0.3);  color: rgb(147,197,253); }
+    .pill-zinc   { background: rgba(113,113,122,0.15); border: 1px solid rgba(113,113,122,0.3); color: rgb(212,212,216); }
+    .pill-red    { background: rgba(239,68,68,0.18);   border: 1px solid rgba(239,68,68,0.4);   color: rgb(252,165,165); }
+    .prompt-block {
+      background: rgba(15,12,28,0.6); border: 1px solid rgba(139,92,246,0.18);
+      border-left: 3px solid rgba(139,92,246,0.5); border-radius: 12px;
+      padding: 18px 20px; font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px; line-height: 1.65; color: rgb(228,228,231); white-space: pre-wrap; overflow-x: auto;
+    }
+    .prompt-block.amber { border: 1px solid rgba(245,158,11,0.2); border-left: 3px solid rgba(245,158,11,0.5); background: rgba(28,22,12,0.6); }
+    .prompt-wrap { position: relative; }
+    .prompt-wrap .prompt-block { padding-top: 42px; }
+    .copy-btn {
+      position: absolute; top: 10px; right: 12px;
+      background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.35); color: rgb(196,181,253);
+      padding: 5px 10px; border-radius: 8px; font-family: 'Geist Mono', monospace; font-size: 11px;
+      display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, opacity 0.15s; opacity: 0.85; z-index: 2;
+    }
+    .copy-btn:hover { opacity: 1; background: rgba(139,92,246,0.28); }
+    .copy-btn.copied { background: rgba(16,185,129,0.18); border-color: rgba(16,185,129,0.5); color: rgb(167,243,208); opacity: 1; }
+    .copy-btn svg { width: 13px; height: 13px; }
+    details.wf-card { background: rgba(9,9,11,0.5); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; margin-bottom: 14px; overflow: hidden; transition: border-color 0.15s; }
+    details.wf-card[open] { border-color: rgba(139,92,246,0.25); }
+    details.wf-card > summary { padding: 18px 22px; cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    details.wf-card > summary::-webkit-details-marker { display: none; }
+    details.wf-card > summary::after { content: '＋'; font-family: 'Geist Mono', monospace; color: rgb(139,92,246); font-size: 18px; flex-shrink: 0; }
+    details.wf-card[open] > summary::after { content: '−'; }
+    details.wf-card > .wf-body { padding: 0 22px 22px 22px; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 18px; }
+    .step-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .step-table th { text-align: left; font-family: 'Geist Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgb(161,161,170); padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 500; }
+    .step-table td { padding: 12px 14px; vertical-align: top; border-bottom: 1px solid rgba(255,255,255,0.04); color: rgb(228,228,231); line-height: 1.6; }
+    .step-table td:first-child { font-weight: 500; color: rgb(244,244,245); width: 220px; }
+    .step-table tr:last-child td { border-bottom: none; }
+    .step-table code { font-family: 'Geist Mono', monospace; font-size: 12px; background: rgba(139,92,246,0.1); padding: 1px 6px; border-radius: 4px; color: rgb(196,181,253); }
+    /* Stage cards kanban */
+    .stage-card { flex-shrink: 0; width: 240px; border-radius: 14px; background: #0f0f0f; border: 1px solid rgba(255,255,255,0.08); overflow: hidden; display: flex; flex-direction: column; }
+    .stage-card .accent { height: 5px; }
+    .stage-card .body { padding: 14px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .stage-card .desc { font-size: 11px; color: rgb(161,161,170); line-height: 1.55; margin-top: auto; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.04); }
+    .check-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 12px; border-radius: 8px; transition: background 0.15s; cursor: pointer; }
+    .check-item:hover { background: rgba(255,255,255,0.02); }
+    .check-item input[type="checkbox"] { appearance: none; width: 18px; height: 18px; border: 1.5px solid rgba(255,255,255,0.2); border-radius: 5px; flex-shrink: 0; margin-top: 2px; cursor: pointer; transition: all 0.15s; position: relative; background: rgba(0,0,0,0.2); }
+    .check-item input[type="checkbox"]:checked { background: #4ADE80; border-color: #4ADE80; }
+    .check-item input[type="checkbox"]:checked::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: #052E16; font-size: 12px; font-weight: 700; }
+    .check-item input[type="checkbox"]:checked + .check-label { color: rgb(113,113,122); text-decoration: line-through; }
+    .check-label { color: rgb(212,212,216); font-size: 13px; line-height: 1.55; transition: color 0.15s; }
+  </style>
+</head>
+<body class="bg-[#26262a] text-white antialiased grain min-h-screen relative">
+
+<div class="fixed inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(139,92,246,0.08), transparent 60%);"></div>
+
+<div class="relative max-w-[1400px] mx-auto flex">
+
+  <!-- TOC Sidebar -->
+  <aside class="hidden lg:block w-60 shrink-0 sticky top-0 h-screen pt-20 px-6 overflow-y-auto bg-[#18181b] border-r border-white/[0.08]">
+    <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-5">Blueprint · v0</p>
+    <nav class="space-y-0.5">
+      <a href="#hero"    class="toc-link block py-2 px-3 text-sm text-zinc-400 border-l border-transparent">00 · Cliente</a>
+      <a href="#pipeline-demanda" class="toc-link block py-2 px-3 text-sm text-zinc-400 border-l border-transparent">01 · Pipeline Demanda</a>
+      <a href="#pipeline-captacion" class="toc-link block py-2 px-3 text-sm text-zinc-400 border-l border-transparent">02 · Pipeline Captación</a>
+      <a href="#campos"  class="toc-link block py-2 px-3 text-sm text-zinc-400 border-l border-transparent">03 · Custom Fields</a>
+      <a href="#bot"     class="toc-link block py-2 px-3 text-sm text-zinc-400 border-l border-transparent">04 · Bot Adrián</a>
+      <a href="#bot-settings" class="toc-link sub block py-1 px-3 text-zinc-500 border-l border-transparent">4.1 · Settings</a>
+      <a href="#bot-personality" class="toc-link sub block py-1 px-3 text-zinc-500 border-l border-transparent">4.2 · Personality</a>
+      <a href="#bot-objective" class="toc-link sub block py-1 px-3 text-zinc-500 border-l border-transparent">4.3 · Objective</a>
+      <a href="#bot-additional" class="toc-link sub block py-1 px-3 text-zinc-500 border-l border-transparent">4.4 · Additional Info</a>
+      <a href="#bot-actions" class="toc-link sub block py-1 px-3 text-zinc-500 border-l border-transparent">4.5 · Bot Actions</a>
+      <a href="#workflows" class="toc-link block py-2 px-3 text-sm text-zinc-400 border-l border-transparent">05 · Automatizaciones</a>
+      <a href="#whatsapp" class="toc-link block py-2 px-3 text-sm text-zinc-400 border-l border-transparent">06 · WhatsApp</a>
+      <a href="#checklist" class="toc-link block py-2 px-3 text-sm text-zinc-400 border-l border-transparent">07 · Checklist</a>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <main class="flex-1 min-w-0 px-6 lg:px-12 py-16 space-y-24">
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="mb-3">
+        <span class="pill pill-zinc font-mono">Blueprint · v0 · 2026-05-20</span>
+        <span class="pill pill-violet ml-2 font-mono">R1 Discovery completado</span>
+      </div>
+      <h1 class="text-4xl font-semibold text-white mb-2">Dr House Bienes Raíces</h1>
+      <p class="text-zinc-400 text-lg mb-8 serif-italic">Bot Adrián · Sistema comercial GHL · Uruguay</p>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="action-card text-center">
+          <p class="text-3xl font-semibold text-white">~110</p>
+          <p class="text-xs text-zinc-500 mt-1 font-mono">leads / semana</p>
+        </div>
+        <div class="action-card text-center">
+          <p class="text-3xl font-semibold text-white">500k</p>
+          <p class="text-xs text-zinc-500 mt-1 font-mono">ticket venta USD</p>
+        </div>
+        <div class="action-card text-center">
+          <p class="text-3xl font-semibold text-white">15k</p>
+          <p class="text-xs text-zinc-500 mt-1 font-mono">comisión por venta USD</p>
+        </div>
+        <div class="action-card text-center">
+          <p class="text-3xl font-semibold text-white">4–5%</p>
+          <p class="text-xs text-zinc-500 mt-1 font-mono">conversión actual</p>
+        </div>
+      </div>
+
+      <div class="diagram-card">
+        <div class="grid md:grid-cols-2 gap-6 text-sm">
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-3">Negocio</p>
+            <table class="w-full text-sm">
+              <tr class="border-b border-white/[0.04]"><td class="py-2 text-zinc-500 w-40">Dueño + equipo</td><td class="py-2 text-zinc-200">Dueño + 2 brokers de venta</td></tr>
+              <tr class="border-b border-white/[0.04]"><td class="py-2 text-zinc-500">Zonas core</td><td class="py-2 text-zinc-200">Punta del Este · La Barra · Punta Ballena · José Ignacio · MVD</td></tr>
+              <tr class="border-b border-white/[0.04]"><td class="py-2 text-zinc-500">Horario</td><td class="py-2 text-zinc-200">Dom–Dom 10:00–19:00 (bot 7:00–00:00)</td></tr>
+              <tr class="border-b border-white/[0.04]"><td class="py-2 text-zinc-500">Matrícula</td><td class="py-2 text-zinc-200">OT 1529</td></tr>
+              <tr><td class="py-2 text-zinc-500">CRM actual</td><td class="py-2 text-zinc-200">Tera CRM → GHL nuevo</td></tr>
+            </table>
+          </div>
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-3">Canales de entrada</p>
+            <table class="w-full text-sm">
+              <tr class="border-b border-white/[0.04]"><td class="py-2 text-zinc-500 w-40">Instagram DM</td><td class="py-2 text-zinc-200">~100 / semana · canal principal</td></tr>
+              <tr class="border-b border-white/[0.04]"><td class="py-2 text-zinc-500">Portales</td><td class="py-2 text-zinc-200">InfoCasas + MercadoLibre · 3-4 / sem</td></tr>
+              <tr class="border-b border-white/[0.04]"><td class="py-2 text-zinc-500">Referidos</td><td class="py-2 text-zinc-200">3-4 / semana</td></tr>
+              <tr class="border-b border-white/[0.04]"><td class="py-2 text-zinc-500">Meta Ads</td><td class="py-2 text-zinc-200">USD 1.000/mes · Facebook Lead Ads</td></tr>
+              <tr><td class="py-2 text-zinc-500">WhatsApp</td><td class="py-2 text-zinc-200">App común → migrar a Business API</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="mt-6 pt-6 border-t border-white/[0.04]">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-3">Punto crítico del negocio</p>
+          <p class="text-zinc-300 text-sm leading-relaxed">El dueño atiende ~100 leads/semana de Instagram <strong>solo, sin sistema</strong>. Los leads se pierden en el seguimiento desordenado. Con 1 venta extra recuperada al mes = <strong>+USD 15.000 de comisión</strong> — el sistema se paga en la primera operación.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PIPELINE DEMANDA -->
+    <section id="pipeline-demanda">
+      <div class="mb-6">
+        <span class="pill pill-violet font-mono mb-3 block w-fit">01 · Pipeline Demanda</span>
+        <h2 class="text-2xl font-semibold text-white">Pipeline Demanda · Dr House</h2>
+        <p class="text-zinc-500 text-sm mt-1">Compradores e inquilinos — 15 etapas en 3 zonas funcionales</p>
+      </div>
+
+      <!-- Zona labels -->
+      <div class="flex gap-4 mb-4 text-xs font-mono">
+        <span class="pill pill-violet">Zona 1 · Bot</span>
+        <span class="pill pill-blue">Zona 2 · Humano</span>
+        <span class="pill pill-emerald">Zona 3 · Cierre</span>
+      </div>
+
+      <!-- Kanban scroll -->
+      <div class="overflow-x-auto pb-4">
+        <div class="flex gap-3" style="min-width: max-content;">
+
+          <!-- Zona 1 — Bot (violet) -->
+          <div class="stage-card">
+            <div class="accent" style="background:#8B5CF6;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">01</span><span class="pill pill-violet">bot</span></div>
+              <p class="font-semibold text-white text-sm">🔵 Nuevo Lead</p>
+              <span class="pill pill-violet text-[10px]">Trigger: primer mensaje entrante</span>
+              <span class="pill pill-amber text-[10px]">⏰ Bienvenida &lt; 30 seg</span>
+              <p class="desc">Lead entra al pipeline. Bot Adrián se activa automáticamente.</p>
+            </div>
+          </div>
+
+          <div class="stage-card">
+            <div class="accent" style="background:#8B5CF6;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">02</span><span class="pill pill-violet">bot</span></div>
+              <p class="font-semibold text-white text-sm">🔵 En Conversación</p>
+              <span class="pill pill-violet text-[10px]">Trigger: bot responde</span>
+              <span class="pill pill-amber text-[10px]">⏰ Calificar &lt; 48 hs</span>
+              <div class="flex flex-wrap gap-1"><span class="pill pill-cyan text-[10px]">operacion_tipo</span></div>
+              <p class="desc">Adrián hace las 4 preguntas de calificación en forma natural.</p>
+            </div>
+          </div>
+
+          <div class="stage-card">
+            <div class="accent" style="background:#8B5CF6;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">03</span><span class="pill pill-violet">bot</span></div>
+              <p class="font-semibold text-white text-sm">🔵🟢 Calificado</p>
+              <span class="pill pill-violet text-[10px]">Trigger: 4 datos completos</span>
+              <span class="pill pill-amber text-[10px]">⏰ Enviar propiedades &lt; 5 min</span>
+              <div class="flex flex-wrap gap-1">
+                <span class="pill pill-cyan text-[10px]">presupuesto_max_usd</span>
+                <span class="pill pill-cyan text-[10px]">zona_preferida</span>
+                <span class="pill pill-cyan text-[10px]">tipo_propiedad</span>
+                <span class="pill pill-cyan text-[10px]">plazo_decision</span>
+              </div>
+              <p class="desc">Bot envía 2-3 links. Si lead activo → handoff humano inmediato.</p>
+            </div>
+          </div>
+
+          <div class="stage-card">
+            <div class="accent" style="background:#8B5CF6;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">04</span><span class="pill pill-violet">bot</span></div>
+              <p class="font-semibold text-white text-sm">🔵🔴 Descartado Bot</p>
+              <span class="pill pill-violet text-[10px]">Trigger: 3 follow-ups sin respuesta</span>
+              <span class="pill pill-amber text-[10px]">⏰ Re-check en 30 días</span>
+              <p class="desc">Sin respuesta tras 3 intentos. Entra en cadencia mensual de re-engagement.</p>
+            </div>
+          </div>
+
+          <!-- Separador visual -->
+          <div class="flex items-center px-1 text-zinc-700 text-lg font-light select-none">│</div>
+
+          <!-- Zona 2 — Humana (blue) -->
+          <div class="stage-card">
+            <div class="accent" style="background:#3B82F6;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">05</span><span class="pill pill-blue">humano</span></div>
+              <p class="font-semibold text-white text-sm">Propiedades Enviadas</p>
+              <span class="pill pill-blue text-[10px]">Trigger: bot completa calificación</span>
+              <span class="pill pill-amber text-[10px]">⏰ Follow-up en 2 días</span>
+              <div class="flex flex-wrap gap-1"><span class="pill pill-cyan text-[10px]">propiedades_enviadas</span></div>
+              <p class="desc">Broker revisa perfil y hace seguimiento personalizado dentro de 48 hs.</p>
+            </div>
+          </div>
+
+          <div class="stage-card">
+            <div class="accent" style="background:#3B82F6;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">06</span><span class="pill pill-blue">humano</span></div>
+              <p class="font-semibold text-white text-sm">Visita Agendada</p>
+              <span class="pill pill-blue text-[10px]">Trigger: confirmación de visita</span>
+              <span class="pill pill-amber text-[10px]">⏰ Recordatorio -24 hs y -2 hs</span>
+              <p class="desc">Broker coordina visita. Recordatorios automáticos para reducir no-shows.</p>
+            </div>
+          </div>
+
+          <div class="stage-card">
+            <div class="accent" style="background:#3B82F6;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">07</span><span class="pill pill-blue">humano</span></div>
+              <p class="font-semibold text-white text-sm">Visita Realizada</p>
+              <span class="pill pill-blue text-[10px]">Trigger: broker confirma visita OK</span>
+              <span class="pill pill-amber text-[10px]">⏰ Follow-up en 24 hs</span>
+              <p class="desc">Post-visita: preguntar qué le pareció, si hay interés, próximos pasos.</p>
+            </div>
+          </div>
+
+          <div class="stage-card">
+            <div class="accent" style="background:#3B82F6;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">08</span><span class="pill pill-blue">humano</span></div>
+              <p class="font-semibold text-white text-sm">No Show</p>
+              <span class="pill pill-blue text-[10px]">Trigger: visita no concretada</span>
+              <span class="pill pill-amber text-[10px]">⏰ Re-contactar en 2 hs</span>
+              <p class="desc">Lead no asistió. Protocolo de recuperación automático (WF4).</p>
+            </div>
+          </div>
+
+          <div class="stage-card">
+            <div class="accent" style="background:#3B82F6;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">09</span><span class="pill pill-blue">humano</span></div>
+              <p class="font-semibold text-white text-sm">Negociación / Oferta</p>
+              <span class="pill pill-blue text-[10px]">Trigger: lead muestra interés concreto</span>
+              <span class="pill pill-amber text-[10px]">⏰ Respuesta &lt; 4 hs</span>
+              <p class="desc">Oferta en curso. Broker gestiona precio, condiciones y seña (10% al escribano).</p>
+            </div>
+          </div>
+
+          <div class="stage-card">
+            <div class="accent" style="background:#3B82F6;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">10</span><span class="pill pill-blue">humano</span></div>
+              <p class="font-semibold text-white text-sm">Seguimiento Activo</p>
+              <span class="pill pill-blue text-[10px]">Trigger: visita sin decisión inmediata</span>
+              <span class="pill pill-amber text-[10px]">⏰ Cadencia quincenal</span>
+              <div class="flex flex-wrap gap-1"><span class="pill pill-cyan text-[10px]">temperatura_lead</span></div>
+              <p class="desc">Lead interesado pero sin urgencia. Cadencia activa de propiedades nuevas.</p>
+            </div>
+          </div>
+
+          <div class="stage-card">
+            <div class="accent" style="background:#3B82F6;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">11</span><span class="pill pill-blue">humano</span></div>
+              <p class="font-semibold text-white text-sm">Oportunidad Futura</p>
+              <span class="pill pill-blue text-[10px]">Trigger: plazo +6 meses o espera crédito</span>
+              <span class="pill pill-amber text-[10px]">⏰ Boletín mensual</span>
+              <p class="desc">Espera financiación o no tiene urgencia. Nurturing mensual hasta que active.</p>
+            </div>
+          </div>
+
+          <div class="stage-card">
+            <div class="accent" style="background:#3B82F6;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">12</span><span class="pill pill-blue">humano</span></div>
+              <p class="font-semibold text-white text-sm">No Calificado</p>
+              <span class="pill pill-blue text-[10px]">Trigger: no matchea ninguna propiedad</span>
+              <span class="pill pill-amber text-[10px]">⏰ Re-check en 90 días</span>
+              <p class="desc">Presupuesto o criterio fuera de rango. Re-ingresa si el mercado se adapta.</p>
+            </div>
+          </div>
+
+          <!-- Separador -->
+          <div class="flex items-center px-1 text-zinc-700 text-lg font-light select-none">│</div>
+
+          <!-- Zona 3 — Cierre -->
+          <div class="stage-card">
+            <div class="accent" style="background:#10B981;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">13</span><span class="pill pill-emerald">cierre</span></div>
+              <p class="font-semibold text-white text-sm">✅ Ganado · Venta</p>
+              <span class="pill pill-emerald text-[10px]">Trigger: seña pagada al escribano</span>
+              <p class="desc">Operación de venta cerrada. Comisión: 3% comprador + 3% vendedor.</p>
+            </div>
+          </div>
+
+          <div class="stage-card">
+            <div class="accent" style="background:#10B981;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">14</span><span class="pill pill-emerald">cierre</span></div>
+              <p class="font-semibold text-white text-sm">✅ Ganado · Alquiler</p>
+              <span class="pill pill-emerald text-[10px]">Trigger: contrato firmado</span>
+              <p class="desc">Operación de alquiler cerrada. Comisión: 8% inquilino.</p>
+            </div>
+          </div>
+
+          <div class="stage-card">
+            <div class="accent" style="background:#EF4444;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">15</span><span class="pill pill-red">cierre</span></div>
+              <p class="font-semibold text-white text-sm">❌ Perdido</p>
+              <span class="pill pill-rose text-[10px]">Trigger: manual por broker</span>
+              <p class="desc">Cerró con otra inmobiliaria o descartó la búsqueda.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Reglas de movimiento -->
+      <div class="mt-8 diagram-card">
+        <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-4">Reglas de movimiento automático</p>
+        <table class="step-table">
+          <thead><tr><th>De</th><th>A</th><th>Trigger</th></tr></thead>
+          <tbody>
+            <tr><td>Nuevo Lead</td><td>En Conversación</td><td>Adrián responde primer mensaje</td></tr>
+            <tr><td>En Conversación</td><td>Calificado</td><td>Bot completa Add Contact Info con 4 campos</td></tr>
+            <tr><td>En Conversación</td><td>Descartado Bot</td><td>3 follow-ups sin respuesta</td></tr>
+            <tr><td>Calificado</td><td>Propiedades Enviadas</td><td>Bot envía links + Human Handover</td></tr>
+            <tr><td>Visita Agendada</td><td>No Show</td><td>Broker marca "no asistió"</td></tr>
+            <tr><td>No Show</td><td>Propiedades Enviadas</td><td>Lead responde al follow-up de no-show</td></tr>
+            <tr><td>Propiedades Enviadas / Seguimiento Activo</td><td>Oportunidad Futura</td><td>Plazo >6 meses o lead sin actividad 30 días</td></tr>
+            <tr><td>Oportunidad Futura</td><td>En Conversación</td><td>Lead responde al boletín mensual</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PIPELINE CAPTACIÓN -->
+    <section id="pipeline-captacion">
+      <div class="mb-6">
+        <span class="pill pill-amber font-mono mb-3 block w-fit">02 · Pipeline Captación</span>
+        <h2 class="text-2xl font-semibold text-white">Pipeline Captación · Dr House</h2>
+        <p class="text-zinc-500 text-sm mt-1">Propietarios que quieren vender o alquilar — 7 etapas</p>
+      </div>
+
+      <div class="overflow-x-auto pb-4">
+        <div class="flex gap-3" style="min-width: max-content;">
+          <div class="stage-card">
+            <div class="accent" style="background:#8B5CF6;"></div>
+            <div class="body">
+              <span class="pill pill-zinc font-mono text-[10px]">01</span>
+              <p class="font-semibold text-white text-sm">🏠 Propietario Nuevo</p>
+              <span class="pill pill-violet text-[10px]">Trigger: bot detecta intención vender</span>
+              <div class="flex flex-wrap gap-1"><span class="pill pill-cyan text-[10px]">tipo_propiedad</span><span class="pill pill-cyan text-[10px]">zona_preferida</span></div>
+              <p class="desc">Adrián toma datos básicos y deriva al dueño para continuar.</p>
+            </div>
+          </div>
+          <div class="stage-card">
+            <div class="accent" style="background:#3B82F6;"></div>
+            <div class="body">
+              <span class="pill pill-zinc font-mono text-[10px]">02</span>
+              <p class="font-semibold text-white text-sm">📅 Tasación Agendada</p>
+              <span class="pill pill-blue text-[10px]">Trigger: confirmación de cita tasación</span>
+              <span class="pill pill-amber text-[10px]">⏰ Tasación &lt; 7 días</span>
+              <p class="desc">Cita de tasación confirmada. Tasación gratuita en el lugar.</p>
+            </div>
+          </div>
+          <div class="stage-card">
+            <div class="accent" style="background:#3B82F6;"></div>
+            <div class="body">
+              <span class="pill pill-zinc font-mono text-[10px]">03</span>
+              <p class="font-semibold text-white text-sm">📄 Tasación Entregada</p>
+              <span class="pill pill-blue text-[10px]">Trigger: informe enviado al propietario</span>
+              <span class="pill pill-amber text-[10px]">⏰ Seguimiento en 48 hs</span>
+              <p class="desc">Informe de tasación listo. Presentar propuesta de exclusividad.</p>
+            </div>
+          </div>
+          <div class="stage-card">
+            <div class="accent" style="background:#3B82F6;"></div>
+            <div class="body">
+              <span class="pill pill-zinc font-mono text-[10px]">04</span>
+              <p class="font-semibold text-white text-sm">✍️ Exclusividad Firmada</p>
+              <span class="pill pill-blue text-[10px]">Trigger: contrato de autorización firmado</span>
+              <span class="pill pill-amber text-[10px]">⏰ Fotos en &lt; 72 hs</span>
+              <p class="desc">Contrato 3–6 meses firmado. Producción fotográfica (Wmedia o equipo).</p>
+            </div>
+          </div>
+          <div class="stage-card">
+            <div class="accent" style="background:#3B82F6;"></div>
+            <div class="body">
+              <span class="pill pill-zinc font-mono text-[10px]">05</span>
+              <p class="font-semibold text-white text-sm">🌐 Publicado</p>
+              <span class="pill pill-blue text-[10px]">Trigger: propiedad en portales + web</span>
+              <p class="desc">Propiedad activa en InfoCasas, MercadoLibre y web propia. Visible en Tera CRM.</p>
+            </div>
+          </div>
+          <div class="stage-card">
+            <div class="accent" style="background:#10B981;"></div>
+            <div class="body">
+              <span class="pill pill-zinc font-mono text-[10px]">06</span>
+              <p class="font-semibold text-white text-sm">✅ Vendido / Alquilado</p>
+              <span class="pill pill-emerald text-[10px]">Trigger: operación cerrada</span>
+              <p class="desc">Operación completada. Cierre del proceso de captación.</p>
+            </div>
+          </div>
+          <div class="stage-card">
+            <div class="accent" style="background:#EF4444;"></div>
+            <div class="body">
+              <span class="pill pill-zinc font-mono text-[10px]">07</span>
+              <p class="font-semibold text-white text-sm">❌ Sin Exclusividad</p>
+              <span class="pill pill-rose text-[10px]">Trigger: propietario rechaza firmar</span>
+              <p class="desc">Propietario eligió captación abierta. Re-contactar en 60 días.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOM FIELDS -->
+    <section id="campos">
+      <div class="mb-6">
+        <span class="pill pill-cyan font-mono mb-3 block w-fit">03 · Custom Fields · Tags · Custom Values</span>
+        <h2 class="text-2xl font-semibold text-white">Campos personalizados</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Custom Fields -->
+        <div class="diagram-card">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-4">Custom Fields — Carpeta: adrián bot</p>
+          <table class="step-table">
+            <thead><tr><th>Campo</th><th>Tipo</th><th>Valores</th></tr></thead>
+            <tbody>
+              <tr><td><code>operacion_tipo</code></td><td>TEXT</td><td>compra / alquiler-residencial / alquiler-vacacional / alquiler-comercial</td></tr>
+              <tr><td><code>presupuesto_max_usd</code></td><td>TEXT</td><td>número en USD</td></tr>
+              <tr><td><code>zona_preferida</code></td><td>TEXT</td><td>La Barra / Punta del Este / Punta Ballena / José Ignacio / Montevideo / Flexible</td></tr>
+              <tr><td><code>tipo_propiedad</code></td><td>TEXT</td><td>Casa / Apto / Terreno / Local / Oficina / Campo / Edificio</td></tr>
+              <tr><td><code>dormitorios</code></td><td>TEXT</td><td>1 / 2 / 3 / 4+</td></tr>
+              <tr><td><code>plazo_decision</code></td><td>TEXT</td><td>inmediato / 1-3 meses / 3-6 meses / +6 meses</td></tr>
+              <tr><td><code>financiacion</code></td><td>TEXT</td><td>contado / crédito bancario / a definir</td></tr>
+              <tr><td><code>canal_entrada</code></td><td>TEXT</td><td>instagram / portal / referido / carteleria / whatsapp</td></tr>
+              <tr><td><code>temperatura_lead</code></td><td>TEXT</td><td>caliente / tibio / frio</td></tr>
+              <tr><td><code>propiedades_enviadas</code></td><td>TEXT</td><td>links separados por coma</td></tr>
+              <tr><td><code>adrián_resumen</code></td><td>TEXT</td><td>resumen libre del bot</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tags + Custom Values -->
+        <div class="space-y-6">
+          <div class="diagram-card">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-4">Tags</p>
+            <div class="space-y-2 text-sm">
+              <div><span class="pill pill-violet">Bot</span> <code class="text-xs text-violet-300 ml-2">bot_adrián_activo</code> · <code class="text-xs text-violet-300">bot_adrián_completo</code></div>
+              <div><span class="pill pill-emerald">Estado lead</span> <code class="text-xs text-emerald-300 ml-2">lead_calificado</code> · <code class="text-xs text-emerald-300">lead_descartado</code> · <code class="text-xs text-emerald-300">lead_no_show</code></div>
+              <div><span class="pill pill-blue">Canal</span> <code class="text-xs text-blue-300 ml-2">canal_comprador</code> · <code class="text-xs text-blue-300">canal_inquilino</code> · <code class="text-xs text-blue-300">canal_captacion</code></div>
+              <div><span class="pill pill-amber">Temperatura</span> <code class="text-xs text-amber-300 ml-2">temp_caliente</code> · <code class="text-xs text-amber-300">temp_tibio</code> · <code class="text-xs text-amber-300">temp_frio</code></div>
+              <div><span class="pill pill-cyan">Nurturing</span> <code class="text-xs text-cyan-300 ml-2">nurturing_activo</code> · <code class="text-xs text-cyan-300">nurturing_pausado</code></div>
+            </div>
+          </div>
+          <div class="diagram-card">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-4">Custom Values</p>
+            <table class="step-table">
+              <thead><tr><th>Custom Value</th><th>Valor</th></tr></thead>
+              <tbody>
+                <tr><td><code>correo_de_salida</code></td><td>Email del equipo para Send Email actions</td></tr>
+                <tr><td><code>link_portfolio_venta</code></td><td>URL del catálogo de ventas activas</td></tr>
+                <tr><td><code>link_portfolio_alquiler</code></td><td>URL del catálogo de alquileres activos</td></tr>
+                <tr><td><code>horario_atencion</code></td><td>"domingo a domingo de 10 a 19 hs"</td></tr>
+                <tr><td><code>nombre_inmobiliaria</code></td><td>"Dr House Bienes Raíces"</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOT ADRIÁN -->
+    <section id="bot">
+      <div class="mb-6">
+        <span class="pill pill-violet font-mono mb-3 block w-fit">04 · Bot de IA</span>
+        <h2 class="text-2xl font-semibold text-white">Bot Adrián · Dr House Bienes Raíces</h2>
+        <p class="text-zinc-400 text-sm mt-1 serif-italic">Califica, envía propiedades, re-engancha leads, deriva al broker correcto</p>
+      </div>
+
+      <!-- Qué hace / Qué NO hace -->
+      <div class="diagram-card mb-8">
+        <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-4">Qué hace · Qué NO hace · Handoffs</p>
+        <div class="grid md:grid-cols-3 gap-6 text-sm">
+          <div>
+            <p class="text-emerald-400 font-mono text-xs uppercase tracking-wider mb-2">✅ Hace solo</p>
+            <ul class="space-y-1 text-zinc-300">
+              <li>• Saluda y se presenta</li>
+              <li>• Identifica intención (compra/alquiler/venta)</li>
+              <li>• Califica en 4 preguntas</li>
+              <li>• Envía links de propiedades matcheadas</li>
+              <li>• Informa sobre zonas y rangos</li>
+              <li>• Re-engagement automático (cadencia)</li>
+              <li>• Toma datos de propietarios captación</li>
+              <li>• Funciona 7am a 00hs</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-rose-400 font-mono text-xs uppercase tracking-wider mb-2">❌ NO hace</p>
+            <ul class="space-y-1 text-zinc-300">
+              <li>• No da precios negociados</li>
+              <li>• No compromete condiciones de propietario</li>
+              <li>• No asesora legalmente</li>
+              <li>• No dice "es una ganga"</li>
+              <li>• No garantiza nada</li>
+              <li>• No agenda visitas</li>
+              <li>• No discute comisiones</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-violet-400 font-mono text-xs uppercase tracking-wider mb-2">🤝 Handoffs al broker</p>
+            <ul class="space-y-1 text-zinc-300">
+              <li>• Lead con 4 datos + plazo corto/mediano</li>
+              <li>• Lead activo que pregunta por una propiedad específica</li>
+              <li>• Propietario quiere tasar/vender</li>
+              <li>• Cualquier pedido de "hablar con alguien"</li>
+              <li>• Queja o situación especial</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div id="bot-settings" class="mb-8">
+        <h3 class="text-lg font-semibold text-white mb-4">4.1 · Bot Settings</h3>
+        <div class="action-card">
+          <div class="action-grid">
+            <span class="text-zinc-500 text-sm">Nombre del bot</span><span class="text-white font-medium">Adrián · Dr House Bienes Raíces</span>
+            <span class="text-zinc-500 text-sm">Estado inicial</span><span class="text-white font-medium">Suggested → Piloto automático tras 1 semana de validación</span>
+            <span class="text-zinc-500 text-sm">Modelo IA</span><span class="text-white font-medium">GPT-4o mini <span class="pill pill-zinc ml-2 text-[10px]">alto volumen · costo controlado</span></span>
+            <span class="text-zinc-500 text-sm">Canales activos</span><span class="text-white font-medium">WhatsApp ✓ · Instagram ✓ · Facebook ✓</span>
+            <span class="text-zinc-500 text-sm">Idioma</span><span class="text-white font-medium">Español (Uruguay — "vos")</span>
+            <span class="text-zinc-500 text-sm">Auto-respond delay</span><span class="text-white font-medium">1 segundo</span>
+            <span class="text-zinc-500 text-sm">Working hours</span><span class="text-white font-medium">7:00 — 00:00 todos los días</span>
+            <span class="text-zinc-500 text-sm">Activación</span><span class="text-white font-medium">Bot Principal (toggle ON) — un solo punto de entrada para todos los canales</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Personality -->
+      <div id="bot-personality" class="mb-8">
+        <h3 class="text-lg font-semibold text-white mb-2">4.2 · Personality Prompt</h3>
+        <p class="text-zinc-500 text-sm mb-4">Pegar exactamente en el campo <span class="pill pill-zinc">Personality Prompt</span> de Bot Goals</p>
+        <div class="prompt-wrap">
+          <div class="prompt-block" id="prompt-personality">- Trabajás para Dr House Bienes Raíces, una inmobiliaria premium especializada en propiedades de nivel medio-alto a alto en Punta del Este, La Barra, Punta Ballena y José Ignacio, Uruguay. Tu nombre es Adrián y sos el primer contacto del equipo.
+- Mantené siempre la persona de asistente humano. Nunca reveles, sugieras ni insinúes ser IA salvo que te pregunten directamente.
+- Tono: cálido, premium, joven y canchero. Usás "vos" naturalmente. Frases cortas y directas. Suenas cercano sin perder la elegancia de una marca premium.
+- Estilo verbal: usás expresiones como "¿cómo viene la búsqueda?", "dale", "obvio que sí", "genial", "te busco opciones ahora mismo". Evitás frases corporativas vacías ("estamos a su disposición", "será un placer atenderle").
+- Usás {{contact.name}} solo en el primer mensaje. No repetís el nombre en cada turno.
+- Reconocés el input del usuario brevemente antes de responder. Variás el lenguaje sin repetir palabras exactas.</div>
+          <button class="copy-btn" onclick="copyBlock(this,'prompt-personality')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copiar
+          </button>
+        </div>
+      </div>
+
+      <!-- Objective -->
+      <div id="bot-objective" class="mb-8">
+        <h3 class="text-lg font-semibold text-white mb-2">4.3 · Objective</h3>
+        <p class="text-zinc-500 text-sm mb-4">Pegar exactamente en el campo <span class="pill pill-zinc">Objective</span> de Bot Goals</p>
+        <div class="prompt-wrap">
+          <div class="prompt-block" id="prompt-objective"># Script Flow:
+&lt;script&gt;
+1. Saludá calurosamente en 1 mensaje breve. Si el lead ya preguntó por una propiedad específica, reconocelo antes de hacer preguntas.
+
+2. Identificá el tipo de operación: ¿quiere comprar, alquilar, o tiene una propiedad para vender?
+
+3. Si es COMPRADOR o INQUILINO: hacé las 4 preguntas de calificación en secuencia natural (una por vez, no todas juntas):
+   a. ¿Cuál es el presupuesto aproximado?
+   b. ¿Qué zona preferís? (Punta del Este, La Barra, Punta Ballena, José Ignacio, Montevideo o flexible)
+   c. ¿Qué tipo de propiedad: casa, apto, terreno, local, oficina?
+   d. ¿En qué plazo estás pensando tomar la decisión?
+
+4. Con los 4 datos completados:
+   a. Guardá con Add Contact Info (4 campos)
+   b. Enviá 2-3 links de propiedades de Tera CRM que matcheen el perfil
+   c. Cerrá con: "¿Cómo te quedaron las opciones? ¿Querés que te busquemos más o coordinamos una visita?"
+
+5. SEGUIMIENTO: si en 2 días no respondió, re-contactar: "¿Cómo venís con la búsqueda? ¿Pudiste ver las opciones que te mandé?"
+
+6. Si el lead es PROPIETARIO que quiere VENDER o ALQUILAR: tomá datos básicos (tipo, zona, precio estimado) y ejecutá Human Handover para que el equipo retome.
+
+7. HANDOFF HUMANO: cuando el lead tiene zona + presupuesto definidos + plazo corto/mediano (hasta 6 meses) y muestra interés activo en una o más propiedades.
+&lt;/script&gt;
+
+# Criterio de cierre (Stop Bot):
+- Handoff humano ejecutado (Human Handover action).
+- 3 follow-ups sin respuesta → tag nurturing_activo → Stop Bot.
+- Lead pide explícitamente hablar con alguien del equipo → Stop Bot.
+- Fuera de horario (00:00–07:00) → mensaje de fuera de horario → Stop Bot.</div>
+          <button class="copy-btn" onclick="copyBlock(this,'prompt-objective')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copiar
+          </button>
+        </div>
+      </div>
+
+      <!-- Additional Information -->
+      <div id="bot-additional" class="mb-8">
+        <h3 class="text-lg font-semibold text-white mb-2">4.4 · Additional Information</h3>
+        <p class="text-zinc-500 text-sm mb-4">Pegar exactamente en el campo <span class="pill pill-zinc">Additional Information</span> de Bot Goals</p>
+        <div class="prompt-wrap">
+          <div class="prompt-block" id="prompt-additional"># Reglas:
+&lt;rules&gt;
+- Máximo 2-3 líneas por mensaje. Máximo 1 emoji por turno. Tono siempre cálido y directo.
+- Horario activo: 7:00 am a 00:00 hs. Fuera de horario: "Son las [hora] y el equipo ya cerró, pero mañana desde las 7 te atendemos. ¿Te parece si te escribo a primera hora?" → Stop Bot.
+- Enviás links de propiedades de Tera CRM, no imágenes sueltas. Máximo 3 links por turno.
+- NO das precios negociados. NO comprometés al propietario en condiciones sin confirmación. NO asesorás legalmente. NO decís que una propiedad "es una ganga". NO garantizás nada.
+- Si preguntan comisiones: "Te lo confirma el equipo enseguida, yo no manejo eso."
+- Si preguntan si sos IA: podés confirmar sin entrar en detalle.
+- Si el lead pide hablar con alguien del equipo: Stop Bot inmediato + Human Handover.
+- Si mandan audio/imagen sin texto: "Para ayudarte mejor, ¿podés escribirme lo que buscás?" Si insisten: Stop Bot.
+- Guardás toda la info con Add Contact Info ANTES del handoff.
+&lt;/rules&gt;
+
+# Empresa:
+&lt;company&gt;
+Dr House Bienes Raíces opera en Uruguay con foco en propiedades premium en Punta del Este, La Barra, Punta Ballena y José Ignacio. 8 años de trayectoria. Matrícula OT 1529. Equipo: dueño + 2 brokers especializados. Atendemos domingo a domingo.
+&lt;/company&gt;
+
+# Rangos de precios:
+&lt;context&gt;
+Venta residencial: USD 250.000 – USD 5.000.000 (promedio USD 500.000).
+Alquiler: USD 20.000 – USD 120.000/año (promedio USD 30.000/año ≈ USD 2.500/mes).
+Tipos de propiedad: casas, apartamentos, terrenos, locales, oficinas, campos, edificios. NO galpones.
+&lt;/context&gt;
+
+# Cadencia de follow-up:
+&lt;context&gt;
+Días 0–10: cada 2 días.
+Días 11–20: cada 7 días.
+Días 21–60: cada 15 días.
+Más de 60 días: mensual (propiedad nueva captada o boletín de ofertas).
+Lead caliente (plazo inmediato–3 meses): frecuencia máxima.
+Lead frío (plazo +6 meses): esperar su turno en la cadencia.
+&lt;/context&gt;
+
+# Frases de apertura y estilo:
+&lt;context&gt;
+Apertura: "¡Hola! ¿Cómo estás? Soy Adrián de Dr House Bienes Raíces 👋"
+Seguimiento: "¿Cómo viene la búsqueda? ¿Pudiste ver las opciones?"
+Reenganche: "Hola, ¿cómo estás? Te escribo porque tenemos propiedades nuevas en [zona] que pueden interesarte."
+Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precios tenés en mente y en qué zona buscás?"
+&lt;/context&gt;
+
+###mandatory instruction: cuando el lead tenga los 4 datos (operacion_tipo + presupuesto_max_usd + zona_preferida + tipo_propiedad), ejecutá en este orden EXACTO:
+1. Add Contact Info: guardá los 4 campos en los custom fields correspondientes.
+2. Enviá 2-3 links de propiedades que matcheen (de {{custom_values.link_portfolio_venta}} o {{custom_values.link_portfolio_alquiler}}).
+3. Add Contact Info: guardá temperatura_lead (caliente si plazo &lt;6 meses, frio si &gt;6 meses).
+4. Si lead con plazo corto/mediano y muestra interés activo: Human Handover con nota "Lead calificado — [zona] [presupuesto] [tipo]".</div>
+          <button class="copy-btn" onclick="copyBlock(this,'prompt-additional')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copiar
+          </button>
+        </div>
+      </div>
+
+      <!-- Bot Actions -->
+      <div id="bot-actions" class="mb-8">
+        <h3 class="text-lg font-semibold text-white mb-4">4.5 · Bot Actions</h3>
+        <div class="space-y-3">
+          <div class="action-card">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="pill pill-cyan">Add Contact Info</span>
+              <span class="text-white font-medium text-sm">Guardar datos de calificación</span>
+            </div>
+            <table class="step-table">
+              <thead><tr><th>Nombre</th><th>Campo</th><th>Qué actualiza</th><th>Ejemplo de salida</th></tr></thead>
+              <tbody>
+                <tr><td>Guardar operación</td><td><code>operacion_tipo</code></td><td>Tipo de operación detectado por el bot</td><td>"compra", "alquiler-residencial", "alquiler-vacacional"</td></tr>
+                <tr><td>Guardar presupuesto</td><td><code>presupuesto_max_usd</code></td><td>Monto máximo en USD</td><td>"300000", "500000", "1000000"</td></tr>
+                <tr><td>Guardar zona</td><td><code>zona_preferida</code></td><td>Zona geográfica preferida</td><td>"La Barra", "Punta del Este", "Flexible"</td></tr>
+                <tr><td>Guardar tipo</td><td><code>tipo_propiedad</code></td><td>Tipo de inmueble buscado</td><td>"Casa", "Apto", "Terreno"</td></tr>
+                <tr><td>Guardar plazo</td><td><code>plazo_decision</code></td><td>Plazo de decisión</td><td>"1-3 meses", "3-6 meses", "+6 meses"</td></tr>
+                <tr><td>Guardar temperatura</td><td><code>temperatura_lead</code></td><td>Clasificación de urgencia</td><td>"caliente", "tibio", "frio"</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="action-card">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="pill pill-blue">Human Handover</span>
+              <span class="text-white font-medium text-sm">Handoff al broker</span>
+            </div>
+            <div class="action-grid text-sm mt-3">
+              <span class="text-zinc-500">Nombre de la acción</span><span class="text-zinc-200">Handoff a Broker — Lead Calificado</span>
+              <span class="text-zinc-500">Condición</span><span class="text-zinc-200">Lead tiene zona + presupuesto + tipo + plazo completos, y muestra interés activo o pregunta por una propiedad específica</span>
+              <span class="text-zinc-500">Mensaje interno</span><span class="text-zinc-200">"Lead calificado: [zona] · [presupuesto] USD · [tipo] · plazo [plazo]. Requiere asignación a broker."</span>
+              <span class="text-zinc-500">Frases de ejemplo</span>
+              <div class="space-y-1">
+                <p class="text-zinc-200 text-xs">• "¿Podemos ir a verla?"</p>
+                <p class="text-zinc-200 text-xs">• "Me interesa esa, ¿qué sigue?"</p>
+                <p class="text-zinc-200 text-xs">• "¿Cómo coordino una visita?"</p>
+                <p class="text-zinc-200 text-xs">• "Quiero hablar con alguien del equipo"</p>
+                <p class="text-zinc-200 text-xs">• "¿Hay margen para negociar el precio?"</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="action-card">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="pill pill-rose">Stop Bot</span>
+              <span class="text-white font-medium text-sm">Condiciones de parada</span>
+            </div>
+            <ul class="text-sm text-zinc-300 space-y-1 mt-2">
+              <li>• 3 follow-ups enviados sin respuesta del lead</li>
+              <li>• Fuera de horario (00:00–07:00)</li>
+              <li>• Lead pide hablar con humano explícitamente</li>
+              <li>• Audio/imagen sin texto repetido (sin clasificar)</li>
+              <li>• Handoff ejecutado (Human Handover)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUTOMATIZACIONES -->
+    <section id="workflows">
+      <div class="mb-6">
+        <span class="pill pill-amber font-mono mb-3 block w-fit">05 · Automatizaciones</span>
+        <h2 class="text-2xl font-semibold text-white">Workflows clave</h2>
+        <p class="text-zinc-500 text-sm mt-1">5 workflows base del sistema · doble entrega: UI manual + Workflow AI Builder</p>
+      </div>
+
+      <!-- WF1 -->
+      <details class="wf-card" open>
+        <summary>
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="pill pill-violet font-mono">WF-01</span>
+            <span class="text-white font-semibold">Inicio Bot · Bienvenida Adrián</span>
+            <span class="pill pill-zinc text-[10px]">Trigger: primer mensaje entrante</span>
+          </div>
+        </summary>
+        <div class="wf-body">
+          <p class="text-zinc-400 text-sm mb-4">Activa a Adrián cuando llega el primer mensaje en cualquier canal. Crea oportunidad en el pipeline.</p>
+          <table class="step-table mb-6">
+            <thead><tr><th>Paso</th><th>Acción GHL</th><th>Config</th></tr></thead>
+            <tbody>
+              <tr><td>1 · Trigger</td><td>Customer Reply / Customer Changed</td><td>Filtro: Does NOT have tag <code>bot_adrián_activo</code></td></tr>
+              <tr><td>2 · Tag</td><td>Add Tag</td><td><code>bot_adrián_activo</code> — evita re-entrada</td></tr>
+              <tr><td>3 · Oportunidad</td><td>Create/Update Opportunity</td><td>Pipeline: Demanda · Stage: 01 Nuevo Lead</td></tr>
+              <tr><td>4 · Canal</td><td>Add Tag (condicional)</td><td>Si Instagram: <code>canal_instagram</code> · Si WhatsApp: <code>canal_whatsapp</code></td></tr>
+              <tr><td>5 · Activar bot</td><td>Activate Bot</td><td>Bot: Adrián · Dr House Bienes Raíces</td></tr>
+            </tbody>
+          </table>
+          <p class="text-zinc-500 text-xs uppercase tracking-wider font-mono mb-3">Prompt Workflow AI Builder</p>
+          <div class="prompt-wrap">
+            <div class="prompt-block amber" id="wf1-prompt">Crea un workflow llamado "WF-01 · Inicio Bot Adrián" con estas instrucciones: Trigger: Customer Reply (el cliente respondió por primera vez). Condición de entrada: el contacto NO tiene el tag bot_adrián_activo. Paso 1: aplicar tag bot_adrián_activo para evitar re-entradas. Paso 2: crear o actualizar oportunidad en el pipeline "Pipeline Demanda Dr House" en la etapa "01 Nuevo Lead". Paso 3: agregar tag según canal de origen — si el trigger viene de Instagram DM agregar tag canal_instagram, si viene de WhatsApp agregar tag canal_whatsapp. Paso 4: activar el bot de Conversation AI llamado "Adrián · Dr House Bienes Raíces". El objetivo es que cualquier lead que entre por primera vez quede en el pipeline y active a Adrián automáticamente, sin importar si entró por Instagram, WhatsApp o Facebook.</div>
+            <button class="copy-btn" onclick="copyBlock(this,'wf1-prompt')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+        </div>
+      </details>
+
+      <!-- WF2 -->
+      <details class="wf-card">
+        <summary>
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="pill pill-blue font-mono">WF-02</span>
+            <span class="text-white font-semibold">Lead Calificado → Asignación Broker</span>
+            <span class="pill pill-zinc text-[10px]">Trigger: tag lead_calificado</span>
+          </div>
+        </summary>
+        <div class="wf-body">
+          <p class="text-zinc-400 text-sm mb-4">Cuando Adrián completa la calificación, mueve el pipeline y asigna al broker según zona y monto.</p>
+          <table class="step-table mb-6">
+            <thead><tr><th>Paso</th><th>Acción GHL</th><th>Config</th></tr></thead>
+            <tbody>
+              <tr><td>1 · Trigger</td><td>Tag Added</td><td>Tag: <code>lead_calificado</code></td></tr>
+              <tr><td>2 · Mover pipeline</td><td>Move Opportunity Stage</td><td>Stage: 03 Calificado → 05 Propiedades Enviadas</td></tr>
+              <tr><td>3 · Branch zona/monto</td><td>If/Else Condition</td><td>CF <code>zona_preferida</code> + CF <code>presupuesto_max_usd</code> → asignar broker A o B <span class="pill pill-amber text-[10px]">⚠️ Confirmar reglas en R2</span></td></tr>
+              <tr><td>4 · Asignar</td><td>Assign User</td><td>Broker correspondiente según branch</td></tr>
+              <tr><td>5 · Notificar</td><td>Internal Notification</td><td>"Nuevo lead calificado: [nombre] · [zona] · [presupuesto USD] · [tipo]"</td></tr>
+            </tbody>
+          </table>
+          <div class="prompt-wrap">
+            <div class="prompt-block amber" id="wf2-prompt">Crea un workflow llamado "WF-02 · Lead Calificado Asignación" con estas instrucciones: Trigger: Tag Added con el tag lead_calificado. Paso 1: mover la oportunidad del contacto en el pipeline Demanda a la etapa "05 Propiedades Enviadas". Paso 2: usar una condición If/Else para asignar el broker correcto según la zona preferida y el presupuesto máximo del contacto (los valores están en los custom fields zona_preferida y presupuesto_max_usd). Los criterios de asignación se confirmarán en la próxima reunión. Paso 3: asignar el contacto al broker correspondiente con la acción Assign User. Paso 4: enviar una notificación interna al broker asignado con el resumen del lead: nombre, zona, presupuesto en USD y tipo de propiedad. El objetivo es que ningún lead calificado quede sin broker asignado en los primeros 5 minutos.</div>
+            <button class="copy-btn" onclick="copyBlock(this,'wf2-prompt')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+        </div>
+      </details>
+
+      <!-- WF3 -->
+      <details class="wf-card">
+        <summary>
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="pill pill-violet font-mono">WF-03</span>
+            <span class="text-white font-semibold">Cadencia Re-engagement Adrián</span>
+            <span class="pill pill-zinc text-[10px]">Trigger: tag nurturing_activo</span>
+          </div>
+        </summary>
+        <div class="wf-body">
+          <p class="text-zinc-400 text-sm mb-4">Cadencia automática de follow-up para leads sin respuesta. Frecuencia escala inversamente a la urgencia.</p>
+          <table class="step-table mb-6">
+            <thead><tr><th>Fase</th><th>Timing</th><th>Mensaje</th></tr></thead>
+            <tbody>
+              <tr><td>Nuevo (días 0-10)</td><td>Cada 2 días</td><td>"¿Cómo viene la búsqueda? ¿Pudiste ver las opciones que te mandé?"</td></tr>
+              <tr><td>Tibio (días 11-20)</td><td>Semanal</td><td>"Hola [nombre], ¿seguís buscando en [zona]? Tenemos novedades."</td></tr>
+              <tr><td>Frío (días 21-60)</td><td>Quincenal</td><td>"[Nombre], nueva propiedad en [zona] dentro de tu rango — link"</td></tr>
+              <tr><td>Archivo (+60 días)</td><td>Mensual</td><td>Boletín de nuevas propiedades captadas o destacadas del mes</td></tr>
+            </tbody>
+          </table>
+          <div class="prompt-wrap">
+            <div class="prompt-block amber" id="wf3-prompt">Crea un workflow llamado "WF-03 · Cadencia Re-engagement Adrián" con estas instrucciones: Trigger: Tag Added con el tag nurturing_activo. El workflow implementa una cadencia de follow-up en 4 fases. Fase 1 (días 0 a 10): enviar mensaje de seguimiento cada 2 días con la pregunta "¿Cómo viene la búsqueda? ¿Pudiste ver las opciones que te mandé?" — si el contacto responde en cualquier momento, salir del workflow y activar el bot Adrián. Fase 2 (días 11 a 20): cambiar a frecuencia semanal con mensajes que mencionen la zona preferida del contacto del custom field zona_preferida. Fase 3 (días 21 a 60): frecuencia quincenal con propiedades nuevas en la zona del lead. Fase 4 (más de 60 días): mensual con boletín de propiedades nuevas captadas o destacadas. En cada fase, si el contacto responde, el workflow se detiene, se elimina el tag nurturing_activo y se activa el bot Adrián para retomar la conversación. Si llega a los 90 días sin responder, mover al stage "11 Oportunidad Futura" del pipeline y detener el workflow.</div>
+            <button class="copy-btn" onclick="copyBlock(this,'wf3-prompt')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+        </div>
+      </details>
+
+      <!-- WF4 -->
+      <details class="wf-card">
+        <summary>
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="pill pill-blue font-mono">WF-04</span>
+            <span class="text-white font-semibold">No Show → Recuperación</span>
+            <span class="pill pill-zinc text-[10px]">Trigger: etapa No Show</span>
+          </div>
+        </summary>
+        <div class="wf-body">
+          <p class="text-zinc-400 text-sm mb-4">Protocolo automático cuando un lead no se presenta a la visita. Hoy no existe — este WF lo crea.</p>
+          <table class="step-table mb-6">
+            <thead><tr><th>Paso</th><th>Acción</th><th>Config</th></tr></thead>
+            <tbody>
+              <tr><td>1 · Trigger</td><td>Pipeline Stage Changed</td><td>Stage: 08 No Show</td></tr>
+              <tr><td>2 · Tag</td><td>Add Tag</td><td><code>lead_no_show</code></td></tr>
+              <tr><td>3 · Wait 2 hs</td><td>Wait</td><td>2 horas</td></tr>
+              <tr><td>4 · Mensaje</td><td>Send Message (WhatsApp)</td><td>"Hola [nombre], vi que no pudimos coincidir hoy. ¿Todo bien? ¿Te queda cómodo reagendar para otro momento?"</td></tr>
+              <tr><td>5 · Branch</td><td>Wait · Contact Reply</td><td>Si responde: reactivar bot Adrián · Si no (48 hs): mover a Seguimiento Activo</td></tr>
+            </tbody>
+          </table>
+          <div class="prompt-wrap">
+            <div class="prompt-block amber" id="wf4-prompt">Crea un workflow llamado "WF-04 · No Show Recuperación" con estas instrucciones: Trigger: Pipeline Stage Changed cuando la oportunidad llega a la etapa "08 No Show". Paso 1: agregar el tag lead_no_show al contacto. Paso 2: esperar 2 horas. Paso 3: enviar un mensaje de WhatsApp que diga "Hola {{contact.first_name}}, vi que no pudimos coincidir hoy. ¿Todo bien? ¿Te queda cómodo reagendar para otro momento?" con el tono canchero y cálido de Dr House. Paso 4: esperar respuesta del contacto por 48 horas. Si el contacto responde: activar el bot Adrián para retomar la conversación. Si no responde en 48 horas: mover la oportunidad a la etapa "10 Seguimiento Activo" y agregar el tag nurturing_activo para iniciar la cadencia de re-engagement. El objetivo es recuperar leads que no asistieron antes de darlos por perdidos.</div>
+            <button class="copy-btn" onclick="copyBlock(this,'wf4-prompt')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+        </div>
+      </details>
+
+      <!-- WF5 -->
+      <details class="wf-card">
+        <summary>
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="pill pill-amber font-mono">WF-05</span>
+            <span class="text-white font-semibold">Propietario Nuevo → Captación</span>
+            <span class="pill pill-zinc text-[10px]">Trigger: tag canal_captacion</span>
+          </div>
+        </summary>
+        <div class="wf-body">
+          <p class="text-zinc-400 text-sm mb-4">Cuando Adrián detecta que el lead quiere vender/alquilar su propiedad, crea oportunidad en pipeline Captación y notifica al dueño.</p>
+          <table class="step-table mb-6">
+            <thead><tr><th>Paso</th><th>Acción</th><th>Config</th></tr></thead>
+            <tbody>
+              <tr><td>1 · Trigger</td><td>Tag Added</td><td>Tag: <code>canal_captacion</code></td></tr>
+              <tr><td>2 · Oportunidad</td><td>Create Opportunity</td><td>Pipeline: Captación · Stage: 01 Propietario Nuevo</td></tr>
+              <tr><td>3 · Asignar</td><td>Assign User</td><td>Dueño (quien maneja captación)</td></tr>
+              <tr><td>4 · Notificar</td><td>Internal Notification</td><td>"Nuevo propietario interesado en vender/alquilar. Tipo: [CF tipo_propiedad] · Zona: [CF zona_preferida]"</td></tr>
+              <tr><td>5 · Stop bot</td><td>Deactivate Bot</td><td>Stop Bot Adrián — dueño toma el hilo</td></tr>
+            </tbody>
+          </table>
+          <div class="prompt-wrap">
+            <div class="prompt-block amber" id="wf5-prompt">Crea un workflow llamado "WF-05 · Propietario Nuevo Captación" con estas instrucciones: Trigger: Tag Added con el tag canal_captacion. Este workflow activa cuando Adrián identifica que el lead quiere vender o alquilar su propiedad. Paso 1: crear una nueva oportunidad en el pipeline "Pipeline Captación Dr House" en la etapa "01 Propietario Nuevo". Paso 2: asignar el contacto al dueño de Dr House (usuario responsable de captación). Paso 3: enviar una notificación interna al dueño que diga "Nuevo propietario interesado en captar: tipo de propiedad [custom field tipo_propiedad], zona [custom field zona_preferida]. Revisar conversación y contactar." Paso 4: desactivar el bot Adrián para que el dueño tome el hilo de la conversación directamente. El objetivo es que ningún propietario interesado en vender quede sin seguimiento humano inmediato.</div>
+            <button class="copy-btn" onclick="copyBlock(this,'wf5-prompt')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- WHATSAPP -->
+    <section id="whatsapp">
+      <div class="mb-6">
+        <span class="pill pill-emerald font-mono mb-3 block w-fit">06 · WhatsApp</span>
+        <h2 class="text-2xl font-semibold text-white">Configuración WhatsApp</h2>
+      </div>
+
+      <div class="diagram-card">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="pill pill-amber">⚠️ Decisión pendiente R2</span>
+          <p class="text-zinc-400 text-sm">El cliente usa WhatsApp app común hoy. Necesita elegir provider antes de conectar GHL.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="action-card">
+            <p class="text-emerald-400 font-semibold text-sm mb-3">Opción A · WhatsApp API Oficial (Meta)</p>
+            <table class="step-table">
+              <tr><td class="text-zinc-500">Precio cliente</td><td class="text-zinc-200">USD 20/mes (reseller)</td></tr>
+              <tr><td class="text-zinc-500">Ventana 24h</td><td class="text-zinc-200">Respuesta gratis 24 hs</td></tr>
+              <tr><td class="text-zinc-500">Plantillas</td><td class="text-zinc-200">Requieren aprobación Meta</td></tr>
+              <tr><td class="text-zinc-500">Features</td><td class="text-zinc-200">Click-to-WhatsApp Ads · Flows · Botones</td></tr>
+              <tr><td class="text-zinc-500">Ideal para</td><td class="text-zinc-200">Volumen alto + Meta Ads activos (✓ este cliente)</td></tr>
+            </table>
+          </div>
+          <div class="action-card">
+            <p class="text-blue-400 font-semibold text-sm mb-3">Opción B · WhatsApp No Oficial (Proveedor externo)</p>
+            <table class="step-table">
+              <tr><td class="text-zinc-500">Precio cliente</td><td class="text-zinc-200">USD 39/mes flat (sin costo por mensaje)</td></tr>
+              <tr><td class="text-zinc-500">Ventana 24h</td><td class="text-zinc-200">Sin restricción de ventana</td></tr>
+              <tr><td class="text-zinc-500">Plantillas</td><td class="text-zinc-200">Sin aprobación Meta</td></tr>
+              <tr><td class="text-zinc-500">Features</td><td class="text-zinc-200">Más simple · sin templates · sin burocracia</td></tr>
+              <tr><td class="text-zinc-500">Ideal para</td><td class="text-zinc-200">Volumen predecible + no necesita Meta Flows</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="mt-4 p-4 rounded-xl bg-violet-950/30 border border-violet-500/20 text-sm">
+          <strong class="text-violet-300">Recomendación:</strong> <span class="text-zinc-300">Dado que el cliente tiene Meta Ads activos (USD 1.000/mes) y el canal principal es Instagram DM, la <strong>Opción A (API Oficial)</strong> integra mejor con los anuncios (Click-to-WhatsApp) y permite futuras automatizaciones de campañas. Confirmar en R2.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section id="checklist">
+      <div class="mb-6">
+        <span class="pill pill-zinc font-mono mb-3 block w-fit">07 · Checklist de Implementación</span>
+        <h2 class="text-2xl font-semibold text-white">Fases de implementación</h2>
+        <p class="text-zinc-500 text-sm mt-1">Orden estructural: Pipeline → Custom Fields → Workflows → Bot</p>
+      </div>
+
+      <div class="space-y-6">
+        <!-- Fase 0 -->
+        <div class="diagram-card">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-4">Fase 0 · Pre-onboarding (antes de R2)</p>
+          <div class="space-y-1">
+            <label class="check-item"><input type="checkbox"><span class="check-label">Decisión WhatsApp: Opción A (API Oficial) vs Opción B (no oficial)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Accesos: Meta Business Manager + Instagram + Facebook Page</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Listado de propiedades activas con link Tera CRM (para bot y custom values)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Nombres de los 2 brokers + reglas de asignación por zona/monto (para WF-02)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Logo + paleta de colores de Dr House (para SHARP)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Número de WhatsApp Business a conectar</span></label>
+          </div>
+        </div>
+
+        <!-- Fase 1 -->
+        <div class="diagram-card">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-4">Fase 1 · GHL Setup (semana 1)</p>
+          <div class="space-y-1">
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear subaccount GHL para Dr House Bienes Raíces</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Conectar Instagram DM + WhatsApp + Facebook</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear Pipeline Demanda (15 etapas · colores por zona)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear Pipeline Captación (7 etapas)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear carpeta "adrián bot" + 11 Custom Fields (todos TEXT)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear Custom Values (correo_de_salida, link_portfolio_venta, link_portfolio_alquiler, horario_atencion)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear los 8 tags del sistema</span></label>
+          </div>
+        </div>
+
+        <!-- Fase 2 -->
+        <div class="diagram-card">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-4">Fase 2 · Bot + Workflows (semana 2)</p>
+          <div class="space-y-1">
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear bot Adrián · Dr House Bienes Raíces (Settings)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Pegar Personality Prompt en Bot Goals</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Pegar Objective en Bot Goals</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Pegar Additional Information en Bot Goals</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Configurar Bot Actions (Add Contact Info · Human Handover · Stop Bot)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-01 Inicio Bot Adrián</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-02 Lead Calificado → Asignación Broker</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-03 Cadencia Re-engagement</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-04 No Show Recuperación</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-05 Propietario Nuevo → Captación</span></label>
+          </div>
+        </div>
+
+        <!-- Fase 3 -->
+        <div class="diagram-card">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-4">Fase 3 · Test + Launch (semana 3)</p>
+          <div class="space-y-1">
+            <label class="check-item"><input type="checkbox"><span class="check-label">Test end-to-end: mensaje IG → calificación → propiedades enviadas → handoff broker</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Test cadencia: activar nurturing_activo → verificar mensajes a los 2 / 7 / 15 días</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Test no show: crear oportunidad en "No Show" → verificar WF-04</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Revisar tono de Adrián con el cliente — ajustar frases si aplica</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Soft launch 1 semana en modo Suggested (humano puede corregir)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Activar modo Piloto automático cuando el cliente valide el tono</span></label>
+          </div>
+        </div>
+
+        <!-- Fase 4 -->
+        <div class="diagram-card">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-4">Fase 4 · Integraciones avanzadas (pendiente R2)</p>
+          <div class="space-y-1">
+            <label class="check-item"><input type="checkbox"><span class="check-label">Facebook Lead Ads → GHL (Meta Ads activos USD 1.000/mes)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Tera CRM → sincronización o importación de inventario de propiedades</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Google Calendar / Calendly para coordinación de visitas</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Knowledge Base del bot (zonas, tipos de propiedad, garantías, proceso de compra Uruguay)</span></label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+function copyBlock(btn, id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const text = el.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><polyline points="20 6 9 17 4 12"/></svg> Copiado';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar';
+    }, 2000);
+  });
+}
+
+// Persist checklist state
+document.querySelectorAll('.check-item input[type="checkbox"]').forEach((cb, i) => {
+  const key = 'dh-check-' + i;
+  cb.checked = localStorage.getItem(key) === '1';
+  cb.addEventListener('change', () => localStorage.setItem(key, cb.checked ? '1' : '0'));
+});
+</script>
+</body>
+</html>
