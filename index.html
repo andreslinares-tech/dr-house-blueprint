@@ -205,7 +205,7 @@
               <p class="font-semibold text-white text-sm">🔵 En Conversación</p>
               <span class="pill pill-violet text-[10px]">Trigger: bot responde</span>
               <span class="pill pill-amber text-[10px]">⏰ Calificar &lt; 48 hs</span>
-              <div class="flex flex-wrap gap-1"><span class="pill pill-cyan text-[10px]">operacion tipo</span></div>
+              <div class="flex flex-wrap gap-1"><span class="pill pill-cyan text-[10px]">tipo de operación</span></div>
               <p class="desc">Adrián hace las 4 preguntas de calificación en forma natural.</p>
             </div>
           </div>
@@ -483,7 +483,7 @@
           <table class="step-table">
             <thead><tr><th>Campo</th><th>Tipo</th><th>Valores</th></tr></thead>
             <tbody>
-              <tr><td><code>operacion tipo</code></td><td>TEXT</td><td>compra / alquiler-residencial / alquiler-vacacional / alquiler-comercial</td></tr>
+              <tr><td><code>tipo de operación</code></td><td>TEXT</td><td>compra / alquiler-residencial / alquiler-vacacional / alquiler-comercial</td></tr>
               <tr><td><code>presupuesto max usd</code></td><td>TEXT</td><td>número en USD</td></tr>
               <tr><td><code>zona preferida</code></td><td>TEXT</td><td>La Barra / Punta del Este / Punta Ballena / José Ignacio / Montevideo / Flexible</td></tr>
               <tr><td><code>tipo propiedad</code></td><td>TEXT</td><td>Casa / Apto / Terreno / Local / Oficina / Campo / Edificio</td></tr>
@@ -701,7 +701,7 @@ Reenganche: "Hola, ¿cómo estás? Te escribo porque tenemos propiedades nuevas 
 Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precios tenés en mente y en qué zona buscás?"
 &lt;/context&gt;
 
-###mandatory instruction: cuando el lead tenga los 4 datos (operacion tipo + presupuesto max usd + zona preferida + tipo propiedad), ejecutá en este orden EXACTO:
+###mandatory instruction: cuando el lead tenga los 4 datos (tipo de operación + presupuesto max usd + zona preferida + tipo propiedad), ejecutá en este orden EXACTO:
 1. Add Contact Info: guardá los 4 campos en los custom fields correspondientes.
 2. Enviá 2-3 links de propiedades que matcheen (de {{custom_values.link_portfolio_venta}} o {{custom_values.link_portfolio_alquiler}}).
 3. Add Contact Info: guardá temperatura lead (caliente si plazo &lt;6 meses, frio si &gt;6 meses).
@@ -725,7 +725,7 @@ Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precio
             <table class="step-table">
               <thead><tr><th>Nombre</th><th>Campo</th><th>Qué actualiza</th><th>Ejemplo de salida</th></tr></thead>
               <tbody>
-                <tr><td>Guardar operación</td><td><code>operacion tipo</code></td><td>Tipo de operación detectado por el bot</td><td>"compra", "alquiler-residencial", "alquiler-vacacional"</td></tr>
+                <tr><td>Guardar operación</td><td><code>tipo de operación</code></td><td>Tipo de operación detectado por el bot</td><td>"compra", "alquiler-residencial", "alquiler-vacacional"</td></tr>
                 <tr><td>Guardar presupuesto</td><td><code>presupuesto max usd</code></td><td>Monto máximo en USD</td><td>"300000", "500000", "1000000"</td></tr>
                 <tr><td>Guardar zona</td><td><code>zona preferida</code></td><td>Zona geográfica preferida</td><td>"La Barra", "Punta del Este", "Flexible"</td></tr>
                 <tr><td>Guardar tipo</td><td><code>tipo propiedad</code></td><td>Tipo de inmueble buscado</td><td>"Casa", "Apto", "Terreno"</td></tr>
