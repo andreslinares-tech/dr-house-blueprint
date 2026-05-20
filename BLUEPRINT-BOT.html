@@ -528,6 +528,168 @@
     </section>
 
     <!-- BOT ADRIÁN -->
+    <section id="workflows">
+      <div class="mb-6">
+        <span class="pill pill-amber font-mono mb-3 block w-fit">04 · Automatizaciones</span>
+        <h2 class="text-2xl font-semibold text-white">Workflows clave</h2>
+        <p class="text-zinc-500 text-sm mt-1">5 workflows base del sistema · doble entrega: UI manual + Workflow AI Builder</p>
+      </div>
+
+      <!-- WF1 -->
+      <details class="wf-card" open>
+        <summary>
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="pill pill-violet font-mono">WF-01</span>
+            <span class="text-white font-semibold">Inicio Bot · Bienvenida Adrián</span>
+            <span class="pill pill-zinc text-[10px]">Trigger: primer mensaje entrante</span>
+          </div>
+        </summary>
+        <div class="wf-body">
+          <p class="text-zinc-400 text-sm mb-4">Activa a Adrián cuando llega el primer mensaje en cualquier canal. Crea oportunidad en el pipeline.</p>
+          <table class="step-table mb-6">
+            <thead><tr><th>Paso</th><th>Acción GHL</th><th>Config</th></tr></thead>
+            <tbody>
+              <tr><td>1 · Trigger</td><td>Customer Reply / Customer Changed</td><td>Filtro: Does NOT have tag <code>bot_adrián_activo</code></td></tr>
+              <tr><td>2 · Tag</td><td>Add Tag</td><td><code>bot_adrián_activo</code> — evita re-entrada</td></tr>
+              <tr><td>3 · Oportunidad</td><td>Create/Update Opportunity</td><td>Pipeline: Demanda · Stage: 01 Nuevo Lead</td></tr>
+              <tr><td>4 · Canal</td><td>Add Tag (condicional)</td><td>Si Instagram: <code>canal_instagram</code> · Si WhatsApp: <code>canal_whatsapp</code></td></tr>
+              <tr><td>5 · Activar bot</td><td>Activate Bot</td><td>Bot: Adrián · Dr House Bienes Raíces</td></tr>
+            </tbody>
+          </table>
+          <p class="text-zinc-500 text-xs uppercase tracking-wider font-mono mb-3">Prompt Workflow AI Builder</p>
+          <div class="prompt-wrap">
+            <div class="prompt-block amber" id="wf1-prompt">Crea un workflow llamado "WF-01 · Inicio Bot Adrián" con estas instrucciones: Trigger: Customer Reply (el cliente respondió por primera vez). Condición de entrada: el contacto NO tiene el tag bot_adrián_activo. Paso 1: aplicar tag bot_adrián_activo para evitar re-entradas. Paso 2: crear o actualizar oportunidad en el pipeline "Pipeline Demanda Dr House" en la etapa "01 Nuevo Lead". Paso 3: agregar tag según canal de origen — si el trigger viene de Instagram DM agregar tag canal_instagram, si viene de WhatsApp agregar tag canal_whatsapp. Paso 4: activar el bot de Conversation AI llamado "Adrián · Dr House Bienes Raíces". El objetivo es que cualquier lead que entre por primera vez quede en el pipeline y active a Adrián automáticamente, sin importar si entró por Instagram, WhatsApp o Facebook.</div>
+            <button class="copy-btn" onclick="copyBlock(this,'wf1-prompt')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+        </div>
+      </details>
+
+      <!-- WF2 -->
+      <details class="wf-card">
+        <summary>
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="pill pill-blue font-mono">WF-02</span>
+            <span class="text-white font-semibold">Lead Calificado → Asignación Broker</span>
+            <span class="pill pill-zinc text-[10px]">Trigger: tag lead_calificado</span>
+          </div>
+        </summary>
+        <div class="wf-body">
+          <p class="text-zinc-400 text-sm mb-4">Cuando Adrián completa la calificación, mueve el pipeline y asigna al broker según zona y monto.</p>
+          <table class="step-table mb-6">
+            <thead><tr><th>Paso</th><th>Acción GHL</th><th>Config</th></tr></thead>
+            <tbody>
+              <tr><td>1 · Trigger</td><td>Tag Added</td><td>Tag: <code>lead_calificado</code></td></tr>
+              <tr><td>2 · Mover pipeline</td><td>Move Opportunity Stage</td><td>Stage: 03 Calificado → 05 Propiedades Enviadas</td></tr>
+              <tr><td>3 · Branch zona/monto</td><td>If/Else Condition</td><td>CF <code>zona preferida</code> + CF <code>presupuesto max usd</code> → asignar broker A o B <span class="pill pill-amber text-[10px]">⚠️ Confirmar reglas en R2</span></td></tr>
+              <tr><td>4 · Asignar</td><td>Assign User</td><td>Broker correspondiente según branch</td></tr>
+              <tr><td>5 · Notificar</td><td>Internal Notification</td><td>"Nuevo lead calificado: [nombre] · [zona] · [presupuesto USD] · [tipo]"</td></tr>
+            </tbody>
+          </table>
+          <div class="prompt-wrap">
+            <div class="prompt-block amber" id="wf2-prompt">Crea un workflow llamado "WF-02 · Lead Calificado Asignación" con estas instrucciones: Trigger: Tag Added con el tag lead_calificado. Paso 1: mover la oportunidad del contacto en el pipeline Demanda a la etapa "05 Propiedades Enviadas". Paso 2: usar una condición If/Else para asignar el broker correcto según la zona preferida y el presupuesto máximo del contacto (los valores están en los custom fields zona preferida y presupuesto max usd). Los criterios de asignación se confirmarán en la próxima reunión. Paso 3: asignar el contacto al broker correspondiente con la acción Assign User. Paso 4: enviar una notificación interna al broker asignado con el resumen del lead: nombre, zona, presupuesto en USD y tipo de propiedad. El objetivo es que ningún lead calificado quede sin broker asignado en los primeros 5 minutos.</div>
+            <button class="copy-btn" onclick="copyBlock(this,'wf2-prompt')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+        </div>
+      </details>
+
+      <!-- WF3 -->
+      <details class="wf-card">
+        <summary>
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="pill pill-violet font-mono">WF-03</span>
+            <span class="text-white font-semibold">Cadencia Re-engagement Adrián</span>
+            <span class="pill pill-zinc text-[10px]">Trigger: tag nurturing_activo</span>
+          </div>
+        </summary>
+        <div class="wf-body">
+          <p class="text-zinc-400 text-sm mb-4">Cadencia automática de follow-up para leads sin respuesta. Frecuencia escala inversamente a la urgencia.</p>
+          <table class="step-table mb-6">
+            <thead><tr><th>Fase</th><th>Timing</th><th>Mensaje</th></tr></thead>
+            <tbody>
+              <tr><td>Nuevo (días 0-10)</td><td>Cada 2 días</td><td>"¿Cómo viene la búsqueda? ¿Pudiste ver las opciones que te mandé?"</td></tr>
+              <tr><td>Tibio (días 11-20)</td><td>Semanal</td><td>"Hola [nombre], ¿seguís buscando en [zona]? Tenemos novedades."</td></tr>
+              <tr><td>Frío (días 21-60)</td><td>Quincenal</td><td>"[Nombre], nueva propiedad en [zona] dentro de tu rango — link"</td></tr>
+              <tr><td>Archivo (+60 días)</td><td>Mensual</td><td>Boletín de nuevas propiedades captadas o destacadas del mes</td></tr>
+            </tbody>
+          </table>
+          <div class="prompt-wrap">
+            <div class="prompt-block amber" id="wf3-prompt">Crea un workflow llamado "WF-03 · Cadencia Re-engagement Adrián" con estas instrucciones: Trigger: Tag Added con el tag nurturing_activo. El workflow implementa una cadencia de follow-up en 4 fases. Fase 1 (días 0 a 10): enviar mensaje de seguimiento cada 2 días con la pregunta "¿Cómo viene la búsqueda? ¿Pudiste ver las opciones que te mandé?" — si el contacto responde en cualquier momento, salir del workflow y activar el bot Adrián. Fase 2 (días 11 a 20): cambiar a frecuencia semanal con mensajes que mencionen la zona preferida del contacto del custom field zona preferida. Fase 3 (días 21 a 60): frecuencia quincenal con propiedades nuevas en la zona del lead. Fase 4 (más de 60 días): mensual con boletín de propiedades nuevas captadas o destacadas. En cada fase, si el contacto responde, el workflow se detiene, se elimina el tag nurturing_activo y se activa el bot Adrián para retomar la conversación. Si llega a los 90 días sin responder, mover al stage "11 Oportunidad Futura" del pipeline y detener el workflow.</div>
+            <button class="copy-btn" onclick="copyBlock(this,'wf3-prompt')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+        </div>
+      </details>
+
+      <!-- WF4 -->
+      <details class="wf-card">
+        <summary>
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="pill pill-blue font-mono">WF-04</span>
+            <span class="text-white font-semibold">No Show → Recuperación</span>
+            <span class="pill pill-zinc text-[10px]">Trigger: etapa No Show</span>
+          </div>
+        </summary>
+        <div class="wf-body">
+          <p class="text-zinc-400 text-sm mb-4">Protocolo automático cuando un lead no se presenta a la visita. Hoy no existe — este WF lo crea.</p>
+          <table class="step-table mb-6">
+            <thead><tr><th>Paso</th><th>Acción</th><th>Config</th></tr></thead>
+            <tbody>
+              <tr><td>1 · Trigger</td><td>Pipeline Stage Changed</td><td>Stage: 08 No Show</td></tr>
+              <tr><td>2 · Tag</td><td>Add Tag</td><td><code>lead_no_show</code></td></tr>
+              <tr><td>3 · Wait 2 hs</td><td>Wait</td><td>2 horas</td></tr>
+              <tr><td>4 · Mensaje</td><td>Send Message (WhatsApp)</td><td>"Hola [nombre], vi que no pudimos coincidir hoy. ¿Todo bien? ¿Te queda cómodo reagendar para otro momento?"</td></tr>
+              <tr><td>5 · Branch</td><td>Wait · Contact Reply</td><td>Si responde: reactivar bot Adrián · Si no (48 hs): mover a Seguimiento Activo</td></tr>
+            </tbody>
+          </table>
+          <div class="prompt-wrap">
+            <div class="prompt-block amber" id="wf4-prompt">Crea un workflow llamado "WF-04 · No Show Recuperación" con estas instrucciones: Trigger: Pipeline Stage Changed cuando la oportunidad llega a la etapa "08 No Show". Paso 1: agregar el tag lead_no_show al contacto. Paso 2: esperar 2 horas. Paso 3: enviar un mensaje de WhatsApp que diga "Hola {{contact.first_name}}, vi que no pudimos coincidir hoy. ¿Todo bien? ¿Te queda cómodo reagendar para otro momento?" con el tono canchero y cálido de Dr House. Paso 4: esperar respuesta del contacto por 48 horas. Si el contacto responde: activar el bot Adrián para retomar la conversación. Si no responde en 48 horas: mover la oportunidad a la etapa "10 Seguimiento Activo" y agregar el tag nurturing_activo para iniciar la cadencia de re-engagement. El objetivo es recuperar leads que no asistieron antes de darlos por perdidos.</div>
+            <button class="copy-btn" onclick="copyBlock(this,'wf4-prompt')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+        </div>
+      </details>
+
+      <!-- WF5 -->
+      <details class="wf-card">
+        <summary>
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="pill pill-amber font-mono">WF-05</span>
+            <span class="text-white font-semibold">Propietario Nuevo → Captación</span>
+            <span class="pill pill-zinc text-[10px]">Trigger: tag canal_captacion</span>
+          </div>
+        </summary>
+        <div class="wf-body">
+          <p class="text-zinc-400 text-sm mb-4">Cuando Adrián detecta que el lead quiere vender/alquilar su propiedad, crea oportunidad en pipeline Captación y notifica al dueño.</p>
+          <table class="step-table mb-6">
+            <thead><tr><th>Paso</th><th>Acción</th><th>Config</th></tr></thead>
+            <tbody>
+              <tr><td>1 · Trigger</td><td>Tag Added</td><td>Tag: <code>canal_captacion</code></td></tr>
+              <tr><td>2 · Oportunidad</td><td>Create Opportunity</td><td>Pipeline: Captación · Stage: 01 Propietario Nuevo</td></tr>
+              <tr><td>3 · Asignar</td><td>Assign User</td><td>Dueño (quien maneja captación)</td></tr>
+              <tr><td>4 · Notificar</td><td>Internal Notification</td><td>"Nuevo propietario interesado en vender/alquilar. Tipo: [CF tipo propiedad] · Zona: [CF zona preferida]"</td></tr>
+              <tr><td>5 · Stop bot</td><td>Deactivate Bot</td><td>Stop Bot Adrián — dueño toma el hilo</td></tr>
+            </tbody>
+          </table>
+          <div class="prompt-wrap">
+            <div class="prompt-block amber" id="wf5-prompt">Crea un workflow llamado "WF-05 · Propietario Nuevo Captación" con estas instrucciones: Trigger: Tag Added con el tag canal_captacion. Este workflow activa cuando Adrián identifica que el lead quiere vender o alquilar su propiedad. Paso 1: crear una nueva oportunidad en el pipeline "Pipeline Captación Dr House" en la etapa "01 Propietario Nuevo". Paso 2: asignar el contacto al dueño de Dr House (usuario responsable de captación). Paso 3: enviar una notificación interna al dueño que diga "Nuevo propietario interesado en captar: tipo de propiedad [custom field tipo propiedad], zona [custom field zona preferida]. Revisar conversación y contactar." Paso 4: desactivar el bot Adrián para que el dueño tome el hilo de la conversación directamente. El objetivo es que ningún propietario interesado en vender quede sin seguimiento humano inmediato.</div>
+            <button class="copy-btn" onclick="copyBlock(this,'wf5-prompt')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+        </div>
+      </details>
+    </section>
     <section id="bot">
       <div class="mb-6">
         <span class="pill pill-violet font-mono mb-3 block w-fit">05 · Bot de IA</span>
@@ -773,168 +935,6 @@ Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precio
     </section>
 
     <!-- AUTOMATIZACIONES -->
-    <section id="workflows">
-      <div class="mb-6">
-        <span class="pill pill-amber font-mono mb-3 block w-fit">04 · Automatizaciones</span>
-        <h2 class="text-2xl font-semibold text-white">Workflows clave</h2>
-        <p class="text-zinc-500 text-sm mt-1">5 workflows base del sistema · doble entrega: UI manual + Workflow AI Builder</p>
-      </div>
-
-      <!-- WF1 -->
-      <details class="wf-card" open>
-        <summary>
-          <div class="flex items-center gap-3 flex-wrap">
-            <span class="pill pill-violet font-mono">WF-01</span>
-            <span class="text-white font-semibold">Inicio Bot · Bienvenida Adrián</span>
-            <span class="pill pill-zinc text-[10px]">Trigger: primer mensaje entrante</span>
-          </div>
-        </summary>
-        <div class="wf-body">
-          <p class="text-zinc-400 text-sm mb-4">Activa a Adrián cuando llega el primer mensaje en cualquier canal. Crea oportunidad en el pipeline.</p>
-          <table class="step-table mb-6">
-            <thead><tr><th>Paso</th><th>Acción GHL</th><th>Config</th></tr></thead>
-            <tbody>
-              <tr><td>1 · Trigger</td><td>Customer Reply / Customer Changed</td><td>Filtro: Does NOT have tag <code>bot_adrián_activo</code></td></tr>
-              <tr><td>2 · Tag</td><td>Add Tag</td><td><code>bot_adrián_activo</code> — evita re-entrada</td></tr>
-              <tr><td>3 · Oportunidad</td><td>Create/Update Opportunity</td><td>Pipeline: Demanda · Stage: 01 Nuevo Lead</td></tr>
-              <tr><td>4 · Canal</td><td>Add Tag (condicional)</td><td>Si Instagram: <code>canal_instagram</code> · Si WhatsApp: <code>canal_whatsapp</code></td></tr>
-              <tr><td>5 · Activar bot</td><td>Activate Bot</td><td>Bot: Adrián · Dr House Bienes Raíces</td></tr>
-            </tbody>
-          </table>
-          <p class="text-zinc-500 text-xs uppercase tracking-wider font-mono mb-3">Prompt Workflow AI Builder</p>
-          <div class="prompt-wrap">
-            <div class="prompt-block amber" id="wf1-prompt">Crea un workflow llamado "WF-01 · Inicio Bot Adrián" con estas instrucciones: Trigger: Customer Reply (el cliente respondió por primera vez). Condición de entrada: el contacto NO tiene el tag bot_adrián_activo. Paso 1: aplicar tag bot_adrián_activo para evitar re-entradas. Paso 2: crear o actualizar oportunidad en el pipeline "Pipeline Demanda Dr House" en la etapa "01 Nuevo Lead". Paso 3: agregar tag según canal de origen — si el trigger viene de Instagram DM agregar tag canal_instagram, si viene de WhatsApp agregar tag canal_whatsapp. Paso 4: activar el bot de Conversation AI llamado "Adrián · Dr House Bienes Raíces". El objetivo es que cualquier lead que entre por primera vez quede en el pipeline y active a Adrián automáticamente, sin importar si entró por Instagram, WhatsApp o Facebook.</div>
-            <button class="copy-btn" onclick="copyBlock(this,'wf1-prompt')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              Copiar
-            </button>
-          </div>
-        </div>
-      </details>
-
-      <!-- WF2 -->
-      <details class="wf-card">
-        <summary>
-          <div class="flex items-center gap-3 flex-wrap">
-            <span class="pill pill-blue font-mono">WF-02</span>
-            <span class="text-white font-semibold">Lead Calificado → Asignación Broker</span>
-            <span class="pill pill-zinc text-[10px]">Trigger: tag lead_calificado</span>
-          </div>
-        </summary>
-        <div class="wf-body">
-          <p class="text-zinc-400 text-sm mb-4">Cuando Adrián completa la calificación, mueve el pipeline y asigna al broker según zona y monto.</p>
-          <table class="step-table mb-6">
-            <thead><tr><th>Paso</th><th>Acción GHL</th><th>Config</th></tr></thead>
-            <tbody>
-              <tr><td>1 · Trigger</td><td>Tag Added</td><td>Tag: <code>lead_calificado</code></td></tr>
-              <tr><td>2 · Mover pipeline</td><td>Move Opportunity Stage</td><td>Stage: 03 Calificado → 05 Propiedades Enviadas</td></tr>
-              <tr><td>3 · Branch zona/monto</td><td>If/Else Condition</td><td>CF <code>zona preferida</code> + CF <code>presupuesto max usd</code> → asignar broker A o B <span class="pill pill-amber text-[10px]">⚠️ Confirmar reglas en R2</span></td></tr>
-              <tr><td>4 · Asignar</td><td>Assign User</td><td>Broker correspondiente según branch</td></tr>
-              <tr><td>5 · Notificar</td><td>Internal Notification</td><td>"Nuevo lead calificado: [nombre] · [zona] · [presupuesto USD] · [tipo]"</td></tr>
-            </tbody>
-          </table>
-          <div class="prompt-wrap">
-            <div class="prompt-block amber" id="wf2-prompt">Crea un workflow llamado "WF-02 · Lead Calificado Asignación" con estas instrucciones: Trigger: Tag Added con el tag lead_calificado. Paso 1: mover la oportunidad del contacto en el pipeline Demanda a la etapa "05 Propiedades Enviadas". Paso 2: usar una condición If/Else para asignar el broker correcto según la zona preferida y el presupuesto máximo del contacto (los valores están en los custom fields zona preferida y presupuesto max usd). Los criterios de asignación se confirmarán en la próxima reunión. Paso 3: asignar el contacto al broker correspondiente con la acción Assign User. Paso 4: enviar una notificación interna al broker asignado con el resumen del lead: nombre, zona, presupuesto en USD y tipo de propiedad. El objetivo es que ningún lead calificado quede sin broker asignado en los primeros 5 minutos.</div>
-            <button class="copy-btn" onclick="copyBlock(this,'wf2-prompt')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              Copiar
-            </button>
-          </div>
-        </div>
-      </details>
-
-      <!-- WF3 -->
-      <details class="wf-card">
-        <summary>
-          <div class="flex items-center gap-3 flex-wrap">
-            <span class="pill pill-violet font-mono">WF-03</span>
-            <span class="text-white font-semibold">Cadencia Re-engagement Adrián</span>
-            <span class="pill pill-zinc text-[10px]">Trigger: tag nurturing_activo</span>
-          </div>
-        </summary>
-        <div class="wf-body">
-          <p class="text-zinc-400 text-sm mb-4">Cadencia automática de follow-up para leads sin respuesta. Frecuencia escala inversamente a la urgencia.</p>
-          <table class="step-table mb-6">
-            <thead><tr><th>Fase</th><th>Timing</th><th>Mensaje</th></tr></thead>
-            <tbody>
-              <tr><td>Nuevo (días 0-10)</td><td>Cada 2 días</td><td>"¿Cómo viene la búsqueda? ¿Pudiste ver las opciones que te mandé?"</td></tr>
-              <tr><td>Tibio (días 11-20)</td><td>Semanal</td><td>"Hola [nombre], ¿seguís buscando en [zona]? Tenemos novedades."</td></tr>
-              <tr><td>Frío (días 21-60)</td><td>Quincenal</td><td>"[Nombre], nueva propiedad en [zona] dentro de tu rango — link"</td></tr>
-              <tr><td>Archivo (+60 días)</td><td>Mensual</td><td>Boletín de nuevas propiedades captadas o destacadas del mes</td></tr>
-            </tbody>
-          </table>
-          <div class="prompt-wrap">
-            <div class="prompt-block amber" id="wf3-prompt">Crea un workflow llamado "WF-03 · Cadencia Re-engagement Adrián" con estas instrucciones: Trigger: Tag Added con el tag nurturing_activo. El workflow implementa una cadencia de follow-up en 4 fases. Fase 1 (días 0 a 10): enviar mensaje de seguimiento cada 2 días con la pregunta "¿Cómo viene la búsqueda? ¿Pudiste ver las opciones que te mandé?" — si el contacto responde en cualquier momento, salir del workflow y activar el bot Adrián. Fase 2 (días 11 a 20): cambiar a frecuencia semanal con mensajes que mencionen la zona preferida del contacto del custom field zona preferida. Fase 3 (días 21 a 60): frecuencia quincenal con propiedades nuevas en la zona del lead. Fase 4 (más de 60 días): mensual con boletín de propiedades nuevas captadas o destacadas. En cada fase, si el contacto responde, el workflow se detiene, se elimina el tag nurturing_activo y se activa el bot Adrián para retomar la conversación. Si llega a los 90 días sin responder, mover al stage "11 Oportunidad Futura" del pipeline y detener el workflow.</div>
-            <button class="copy-btn" onclick="copyBlock(this,'wf3-prompt')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              Copiar
-            </button>
-          </div>
-        </div>
-      </details>
-
-      <!-- WF4 -->
-      <details class="wf-card">
-        <summary>
-          <div class="flex items-center gap-3 flex-wrap">
-            <span class="pill pill-blue font-mono">WF-04</span>
-            <span class="text-white font-semibold">No Show → Recuperación</span>
-            <span class="pill pill-zinc text-[10px]">Trigger: etapa No Show</span>
-          </div>
-        </summary>
-        <div class="wf-body">
-          <p class="text-zinc-400 text-sm mb-4">Protocolo automático cuando un lead no se presenta a la visita. Hoy no existe — este WF lo crea.</p>
-          <table class="step-table mb-6">
-            <thead><tr><th>Paso</th><th>Acción</th><th>Config</th></tr></thead>
-            <tbody>
-              <tr><td>1 · Trigger</td><td>Pipeline Stage Changed</td><td>Stage: 08 No Show</td></tr>
-              <tr><td>2 · Tag</td><td>Add Tag</td><td><code>lead_no_show</code></td></tr>
-              <tr><td>3 · Wait 2 hs</td><td>Wait</td><td>2 horas</td></tr>
-              <tr><td>4 · Mensaje</td><td>Send Message (WhatsApp)</td><td>"Hola [nombre], vi que no pudimos coincidir hoy. ¿Todo bien? ¿Te queda cómodo reagendar para otro momento?"</td></tr>
-              <tr><td>5 · Branch</td><td>Wait · Contact Reply</td><td>Si responde: reactivar bot Adrián · Si no (48 hs): mover a Seguimiento Activo</td></tr>
-            </tbody>
-          </table>
-          <div class="prompt-wrap">
-            <div class="prompt-block amber" id="wf4-prompt">Crea un workflow llamado "WF-04 · No Show Recuperación" con estas instrucciones: Trigger: Pipeline Stage Changed cuando la oportunidad llega a la etapa "08 No Show". Paso 1: agregar el tag lead_no_show al contacto. Paso 2: esperar 2 horas. Paso 3: enviar un mensaje de WhatsApp que diga "Hola {{contact.first_name}}, vi que no pudimos coincidir hoy. ¿Todo bien? ¿Te queda cómodo reagendar para otro momento?" con el tono canchero y cálido de Dr House. Paso 4: esperar respuesta del contacto por 48 horas. Si el contacto responde: activar el bot Adrián para retomar la conversación. Si no responde en 48 horas: mover la oportunidad a la etapa "10 Seguimiento Activo" y agregar el tag nurturing_activo para iniciar la cadencia de re-engagement. El objetivo es recuperar leads que no asistieron antes de darlos por perdidos.</div>
-            <button class="copy-btn" onclick="copyBlock(this,'wf4-prompt')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              Copiar
-            </button>
-          </div>
-        </div>
-      </details>
-
-      <!-- WF5 -->
-      <details class="wf-card">
-        <summary>
-          <div class="flex items-center gap-3 flex-wrap">
-            <span class="pill pill-amber font-mono">WF-05</span>
-            <span class="text-white font-semibold">Propietario Nuevo → Captación</span>
-            <span class="pill pill-zinc text-[10px]">Trigger: tag canal_captacion</span>
-          </div>
-        </summary>
-        <div class="wf-body">
-          <p class="text-zinc-400 text-sm mb-4">Cuando Adrián detecta que el lead quiere vender/alquilar su propiedad, crea oportunidad en pipeline Captación y notifica al dueño.</p>
-          <table class="step-table mb-6">
-            <thead><tr><th>Paso</th><th>Acción</th><th>Config</th></tr></thead>
-            <tbody>
-              <tr><td>1 · Trigger</td><td>Tag Added</td><td>Tag: <code>canal_captacion</code></td></tr>
-              <tr><td>2 · Oportunidad</td><td>Create Opportunity</td><td>Pipeline: Captación · Stage: 01 Propietario Nuevo</td></tr>
-              <tr><td>3 · Asignar</td><td>Assign User</td><td>Dueño (quien maneja captación)</td></tr>
-              <tr><td>4 · Notificar</td><td>Internal Notification</td><td>"Nuevo propietario interesado en vender/alquilar. Tipo: [CF tipo propiedad] · Zona: [CF zona preferida]"</td></tr>
-              <tr><td>5 · Stop bot</td><td>Deactivate Bot</td><td>Stop Bot Adrián — dueño toma el hilo</td></tr>
-            </tbody>
-          </table>
-          <div class="prompt-wrap">
-            <div class="prompt-block amber" id="wf5-prompt">Crea un workflow llamado "WF-05 · Propietario Nuevo Captación" con estas instrucciones: Trigger: Tag Added con el tag canal_captacion. Este workflow activa cuando Adrián identifica que el lead quiere vender o alquilar su propiedad. Paso 1: crear una nueva oportunidad en el pipeline "Pipeline Captación Dr House" en la etapa "01 Propietario Nuevo". Paso 2: asignar el contacto al dueño de Dr House (usuario responsable de captación). Paso 3: enviar una notificación interna al dueño que diga "Nuevo propietario interesado en captar: tipo de propiedad [custom field tipo propiedad], zona [custom field zona preferida]. Revisar conversación y contactar." Paso 4: desactivar el bot Adrián para que el dueño tome el hilo de la conversación directamente. El objetivo es que ningún propietario interesado en vender quede sin seguimiento humano inmediato.</div>
-            <button class="copy-btn" onclick="copyBlock(this,'wf5-prompt')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              Copiar
-            </button>
-          </div>
-        </div>
-      </details>
-    </section>
 
     <!-- WHATSAPP -->
     <section id="whatsapp">
