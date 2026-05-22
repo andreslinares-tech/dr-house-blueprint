@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blueprint v1.1 · Adrián · Dr House Bienes Raíces</title>
+  <title>Blueprint v1.2 · Adrián · Dr House Bienes Raíces</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,9 +112,10 @@
     <!-- HERO -->
     <section id="hero">
       <div class="mb-3">
-        <span class="pill pill-zinc font-mono">Blueprint · v1.1 · 2026-05-22</span>
+        <span class="pill pill-zinc font-mono">Blueprint · v1.2 · 2026-05-22</span>
         <span class="pill pill-emerald ml-2 font-mono">R2 validada con equipo</span>
         <span class="pill pill-amber ml-2 font-mono">Target prod: 1ª sem junio</span>
+        <span class="pill pill-rose ml-2 font-mono">Sin alquileres — solo compra/venta</span>
       </div>
       <h1 class="text-4xl font-semibold text-white mb-2">Dr House Bienes Raíces</h1>
       <p class="text-zinc-400 text-lg mb-8 serif-italic">Bot Adrián · Sistema comercial GHL · Uruguay</p>
@@ -174,6 +175,7 @@
             <li>Canal principal confirmado: <strong>Instagram</strong>. WhatsApp queda pendiente decisión Business.</li>
             <li>Asignación: <strong>abierta</strong> (cualquiera atiende cualquier lead, no por zona ni monto).</li>
             <li>Expectativa Adrián: <strong>2 leads calientes/tibios por mes</strong>, piso USD 100k.</li>
+            <li><strong>Sin alquileres</strong>: el negocio trabaja solo compra (demanda) + captación de propietarios que venden. Toda lógica de alquileres queda fuera de scope.</li>
           </ul>
         </div>
       </div>
@@ -184,7 +186,7 @@
       <div class="mb-6">
         <span class="pill pill-violet font-mono mb-3 block w-fit">01 · Pipeline Demanda</span>
         <h2 class="text-2xl font-semibold text-white">Pipeline Demanda · Dr House</h2>
-        <p class="text-zinc-500 text-sm mt-1">Compradores e inquilinos — 15 etapas en 3 zonas funcionales</p>
+        <p class="text-zinc-500 text-sm mt-1">Compradores — 14 etapas en 3 zonas funcionales</p>
       </div>
 
       <!-- Zona labels -->
@@ -359,19 +361,9 @@
           </div>
 
           <div class="stage-card">
-            <div class="accent" style="background:#10B981;"></div>
-            <div class="body">
-              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">14</span><span class="pill pill-emerald">cierre</span></div>
-              <p class="font-semibold text-white text-sm">✅ Ganado · Alquiler</p>
-              <span class="pill pill-emerald text-[10px]">Trigger: contrato firmado</span>
-              <p class="desc">Operación de alquiler cerrada. Comisión: 8% inquilino.</p>
-            </div>
-          </div>
-
-          <div class="stage-card">
             <div class="accent" style="background:#EF4444;"></div>
             <div class="body">
-              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">15</span><span class="pill pill-red">cierre</span></div>
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">14</span><span class="pill pill-red">cierre</span></div>
               <p class="font-semibold text-white text-sm">❌ Perdido</p>
               <span class="pill pill-rose text-[10px]">Trigger: manual por broker</span>
               <p class="desc">Cerró con otra inmobiliaria o descartó la búsqueda.</p>
@@ -405,7 +397,7 @@
       <div class="mb-6">
         <span class="pill pill-amber font-mono mb-3 block w-fit">02 · Pipeline Captación</span>
         <h2 class="text-2xl font-semibold text-white">Pipeline Captación · Dr House</h2>
-        <p class="text-zinc-500 text-sm mt-1">Propietarios que quieren vender o alquilar — 7 etapas</p>
+        <p class="text-zinc-500 text-sm mt-1">Propietarios que quieren vender — 7 etapas</p>
       </div>
 
       <div class="overflow-x-auto pb-4">
@@ -463,7 +455,7 @@
             <div class="accent" style="background:#10B981;"></div>
             <div class="body">
               <span class="pill pill-zinc font-mono text-[10px]">06</span>
-              <p class="font-semibold text-white text-sm">✅ Vendido / Alquilado</p>
+              <p class="font-semibold text-white text-sm">✅ Vendido</p>
               <span class="pill pill-emerald text-[10px]">Trigger: operación cerrada</span>
               <p class="desc">Operación completada. Cierre del proceso de captación.</p>
             </div>
@@ -495,7 +487,7 @@
           <table class="step-table">
             <thead><tr><th>Campo</th><th>Tipo</th><th>Valores</th></tr></thead>
             <tbody>
-              <tr><td><code>tipo de operación</code></td><td>TEXT</td><td>compra / alquiler-residencial / alquiler-vacacional / alquiler-comercial</td></tr>
+              <tr><td><code>tipo de operación</code></td><td>TEXT</td><td>compra / venta</td></tr>
               <tr><td><code>presupuesto max usd</code></td><td>TEXT</td><td>número en USD</td></tr>
               <tr><td><code>zona preferida</code></td><td>TEXT</td><td>La Barra / Punta del Este / Punta Ballena / José Ignacio / Montevideo / Flexible</td></tr>
               <tr><td><code>tipo propiedad</code></td><td>TEXT</td><td>Casa / Apto / Terreno / Local / Oficina / Campo / Edificio</td></tr>
@@ -517,7 +509,7 @@
             <div class="space-y-2 text-sm">
               <div><span class="pill pill-violet">Bot</span> <code class="text-xs text-violet-300 ml-2">bot_adrián_activo</code> · <code class="text-xs text-violet-300">bot_adrián_completo</code></div>
               <div><span class="pill pill-emerald">Estado lead</span> <code class="text-xs text-emerald-300 ml-2">lead_calificado</code> · <code class="text-xs text-emerald-300">lead_descartado</code> · <code class="text-xs text-emerald-300">lead_no_show</code></div>
-              <div><span class="pill pill-blue">Canal</span> <code class="text-xs text-blue-300 ml-2">canal_comprador</code> · <code class="text-xs text-blue-300">canal_inquilino</code> · <code class="text-xs text-blue-300">canal_captacion</code></div>
+              <div><span class="pill pill-blue">Canal</span> <code class="text-xs text-blue-300 ml-2">canal_comprador</code> · <code class="text-xs text-blue-300">canal_captacion</code></div>
               <div><span class="pill pill-amber">Temperatura</span> <code class="text-xs text-amber-300 ml-2">temp_caliente</code> · <code class="text-xs text-amber-300">temp_tibio</code> · <code class="text-xs text-amber-300">temp_frio</code></div>
               <div><span class="pill pill-cyan">Nurturing</span> <code class="text-xs text-cyan-300 ml-2">nurturing_activo</code> · <code class="text-xs text-cyan-300">nurturing_pausado</code></div>
             </div>
@@ -531,7 +523,6 @@
                 <tr><td><code>link_propiedades_venta_bajo</code></td><td>Link a ventas &lt; USD 300k (Word/PDF que entrega Adrián)</td></tr>
                 <tr><td><code>link_propiedades_venta_medio</code></td><td>Link a ventas USD 300k–800k</td></tr>
                 <tr><td><code>link_propiedades_venta_alto</code></td><td>Link a ventas &gt; USD 800k</td></tr>
-                <tr><td><code>link_propiedades_alquiler</code></td><td>Link al catálogo de alquileres activos</td></tr>
                 <tr><td><code>horario_atencion</code></td><td>"domingo a domingo de 10 a 19 hs"</td></tr>
                 <tr><td><code>nombre_inmobiliaria</code></td><td>"Dr House Bienes Raíces"</td></tr>
               </tbody>
@@ -683,19 +674,19 @@
           </div>
         </summary>
         <div class="wf-body">
-          <p class="text-zinc-400 text-sm mb-4">Cuando Adrián detecta que el lead quiere vender/alquilar su propiedad, crea oportunidad en pipeline Captación y notifica al dueño.</p>
+          <p class="text-zinc-400 text-sm mb-4">Cuando Adrián detecta que el lead quiere vender su propiedad, crea oportunidad en pipeline Captación y notifica al dueño.</p>
           <table class="step-table mb-6">
             <thead><tr><th>Paso</th><th>Acción</th><th>Config</th></tr></thead>
             <tbody>
               <tr><td>1 · Trigger</td><td>Tag Added</td><td>Tag: <code>canal_captacion</code></td></tr>
               <tr><td>2 · Oportunidad</td><td>Create Opportunity</td><td>Pipeline: Captación · Stage: 01 Propietario Nuevo</td></tr>
               <tr><td>3 · Asignar</td><td>Assign User</td><td>Dueño (quien maneja captación)</td></tr>
-              <tr><td>4 · Notificar</td><td>Internal Notification</td><td>"Nuevo propietario interesado en vender/alquilar. Tipo: [CF tipo propiedad] · Zona: [CF zona preferida]"</td></tr>
+              <tr><td>4 · Notificar</td><td>Internal Notification</td><td>"Nuevo propietario interesado en vender. Tipo: [CF tipo propiedad] · Zona: [CF zona preferida]"</td></tr>
               <tr><td>5 · Stop bot</td><td>Deactivate Bot</td><td>Stop Bot Adrián — dueño toma el hilo</td></tr>
             </tbody>
           </table>
           <div class="prompt-wrap">
-            <div class="prompt-block amber" id="wf5-prompt">Crea un workflow llamado "WF-05 · Propietario Nuevo Captación" con estas instrucciones: Trigger: Tag Added con el tag canal_captacion. Este workflow activa cuando Adrián identifica que el lead quiere vender o alquilar su propiedad. Paso 1: crear una nueva oportunidad en el pipeline "Pipeline Captación Dr House" en la etapa "01 Propietario Nuevo". Paso 2: asignar el contacto al dueño de Dr House (usuario responsable de captación). Paso 3: enviar una notificación interna al dueño que diga "Nuevo propietario interesado en captar: tipo de propiedad [custom field tipo propiedad], zona [custom field zona preferida]. Revisar conversación y contactar." Paso 4: desactivar el bot Adrián para que el dueño tome el hilo de la conversación directamente. El objetivo es que ningún propietario interesado en vender quede sin seguimiento humano inmediato.</div>
+            <div class="prompt-block amber" id="wf5-prompt">Crea un workflow llamado "WF-05 · Propietario Nuevo Captación" con estas instrucciones: Trigger: Tag Added con el tag canal_captacion. Este workflow activa cuando Adrián identifica que el lead quiere vender su propiedad. Paso 1: crear una nueva oportunidad en el pipeline "Pipeline Captación Dr House" en la etapa "01 Propietario Nuevo". Paso 2: asignar el contacto al dueño de Dr House (usuario responsable de captación). Paso 3: enviar una notificación interna al dueño que diga "Nuevo propietario interesado en captar: tipo de propiedad [custom field tipo propiedad], zona [custom field zona preferida]. Revisar conversación y contactar." Paso 4: desactivar el bot Adrián para que el dueño tome el hilo de la conversación directamente. El objetivo es que ningún propietario interesado en vender quede sin seguimiento humano inmediato.</div>
             <button class="copy-btn" onclick="copyBlock(this,'wf5-prompt')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               Copiar
@@ -719,7 +710,7 @@
             <p class="text-emerald-400 font-mono text-xs uppercase tracking-wider mb-2">✅ Hace solo</p>
             <ul class="space-y-1 text-zinc-300">
               <li>• Saluda y se presenta</li>
-              <li>• Identifica intención (compra/alquiler/venta)</li>
+              <li>• Identifica intención (compra / venta)</li>
               <li>• Califica en 4 preguntas</li>
               <li>• Envía links de propiedades matcheadas</li>
               <li>• Informa sobre zonas y rangos</li>
@@ -797,9 +788,9 @@
 &lt;script&gt;
 1. Saludá calurosamente en 1 mensaje breve. Si el lead ya preguntó por una propiedad específica, reconocelo antes de hacer preguntas.
 
-2. Identificá el tipo de operación: ¿quiere comprar, alquilar, o tiene una propiedad para vender?
+2. Identificá el tipo de operación: ¿quiere comprar, o tiene una propiedad para vender?
 
-3. Si es COMPRADOR o INQUILINO: hacé las 4 preguntas de calificación en secuencia natural (una por vez, no todas juntas):
+3. Si es COMPRADOR: hacé las 4 preguntas de calificación en secuencia natural (una por vez, no todas juntas):
    a. ¿Cuál es el presupuesto aproximado?
    b. ¿Qué zona preferís? (Punta del Este, La Barra, Punta Ballena, José Ignacio, Montevideo o flexible)
    c. ¿Qué tipo de propiedad: casa, apto, terreno, local, oficina?
@@ -812,7 +803,7 @@
 
 5. SEGUIMIENTO: si en 2 días no respondió, re-contactar: "¿Cómo venís con la búsqueda? ¿Pudiste ver las opciones que te mandé?"
 
-6. Si el lead es PROPIETARIO que quiere VENDER o ALQUILAR: tomá datos básicos (tipo, zona, precio estimado) y ejecutá Human Handover para que el equipo retome.
+6. Si el lead es PROPIETARIO que quiere VENDER: tomá datos básicos (tipo, zona, precio estimado) y ejecutá Human Handover para que el equipo retome. (Dr House no trabaja alquileres — si el propietario quiere alquilar, agradecé y cerrá la conversación amablemente.)
 
 7. HANDOFF HUMANO: cuando el lead tiene zona + presupuesto definidos + plazo corto/mediano (hasta 6 meses) y muestra interés activo en una o más propiedades.
 &lt;/script&gt;
@@ -855,7 +846,6 @@ Dr House Bienes Raíces opera en Uruguay con foco en propiedades premium en Punt
 # Rangos de precios:
 &lt;context&gt;
 Venta residencial: USD 250.000 – USD 5.000.000 (promedio USD 500.000).
-Alquiler: USD 20.000 – USD 120.000/año (promedio USD 30.000/año ≈ USD 2.500/mes).
 Tipos de propiedad: casas, apartamentos, terrenos, locales, oficinas, campos, edificios. NO galpones.
 &lt;/context&gt;
 
@@ -879,7 +869,7 @@ Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precio
 
 ###mandatory instruction: cuando el lead tenga los 4 datos (tipo de operación + presupuesto max usd + zona preferida + tipo propiedad), ejecutá en este orden EXACTO:
 1. Add Contact Info: guardá los 4 campos en los custom fields correspondientes.
-2. Enviá EL link del rango que corresponda: presupuesto &lt; 300k → {{custom_values.link_propiedades_venta_bajo}} · 300k–800k → {{custom_values.link_propiedades_venta_medio}} · &gt; 800k → {{custom_values.link_propiedades_venta_alto}} · alquiler → {{custom_values.link_propiedades_alquiler}}.
+2. Enviá EL link del rango que corresponda al presupuesto del lead: &lt; 300k → {{custom_values.link_propiedades_venta_bajo}} · 300k–800k → {{custom_values.link_propiedades_venta_medio}} · &gt; 800k → {{custom_values.link_propiedades_venta_alto}}.
 3. Add Contact Info: guardá temperatura lead (caliente si plazo &lt;6 meses, frio si &gt;6 meses).
 4. Si lead con plazo corto/mediano y muestra interés activo: Human Handover con nota "Lead calificado — [zona] [presupuesto] [tipo]".</div>
           <button class="copy-btn" onclick="copyBlock(this,'prompt-additional')">
@@ -901,7 +891,7 @@ Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precio
             <table class="step-table">
               <thead><tr><th>Nombre</th><th>Campo</th><th>Qué actualiza</th><th>Ejemplo de salida</th></tr></thead>
               <tbody>
-                <tr><td>Guardar operación</td><td><code>tipo de operación</code></td><td>Tipo de operación detectado por el bot</td><td>"compra", "alquiler-residencial", "alquiler-vacacional"</td></tr>
+                <tr><td>Guardar operación</td><td><code>tipo de operación</code></td><td>Tipo de operación detectado por el bot</td><td>"compra", "venta"</td></tr>
                 <tr><td>Guardar presupuesto</td><td><code>presupuesto max usd</code></td><td>Monto máximo en USD</td><td>"300000", "500000", "1000000"</td></tr>
                 <tr><td>Guardar zona</td><td><code>zona preferida</code></td><td>Zona geográfica preferida</td><td>"La Barra", "Punta del Este", "Flexible"</td></tr>
                 <tr><td>Guardar tipo</td><td><code>tipo propiedad</code></td><td>Tipo de inmueble buscado</td><td>"Casa", "Apto", "Terreno"</td></tr>
@@ -1005,7 +995,7 @@ Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precio
           <div class="space-y-1">
             <label class="check-item"><input type="checkbox"><span class="check-label">Decisión WhatsApp: Opción A (API Oficial) vs Opción B (no oficial)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Accesos: Meta Business Manager + Instagram + Facebook Page</span></label>
-            <label class="check-item"><input type="checkbox"><span class="check-label">Adrián entrega Word/PDF con links de propiedades agrupados por rango (bajo/medio/alto + alquiler)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Adrián entrega Word/PDF con links de propiedades agrupados por rango (bajo/medio/alto — solo venta)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Adrián decide WhatsApp Business (mismo número o chip nuevo solo laboral)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Nombres de los 2 brokers + reglas de asignación por zona/monto (para WF-02)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Logo + paleta de colores de Dr House (para SHARP)</span></label>
@@ -1022,7 +1012,7 @@ Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precio
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear Pipeline Demanda (15 etapas · colores por zona)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear Pipeline Captación (7 etapas)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear carpeta "adrián bot" + 11 Custom Fields (todos TEXT)</span></label>
-            <label class="check-item"><input type="checkbox"><span class="check-label">Crear Custom Values (correo_de_salida, link_propiedades_venta_bajo/medio/alto, link_propiedades_alquiler, horario_atencion)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear Custom Values (correo_de_salida, link_propiedades_venta_bajo/medio/alto, horario_atencion)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Conectar Instagram al CRM (canal principal confirmado en R2)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear los 8 tags del sistema</span></label>
           </div>
