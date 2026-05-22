@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blueprint · Adrián · Dr House Bienes Raíces</title>
+  <title>Blueprint v1.1 · Adrián · Dr House Bienes Raíces</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,8 +112,9 @@
     <!-- HERO -->
     <section id="hero">
       <div class="mb-3">
-        <span class="pill pill-zinc font-mono">Blueprint · v0 · 2026-05-20</span>
-        <span class="pill pill-violet ml-2 font-mono">R1 Discovery completado</span>
+        <span class="pill pill-zinc font-mono">Blueprint · v1.1 · 2026-05-22</span>
+        <span class="pill pill-emerald ml-2 font-mono">R2 validada con equipo</span>
+        <span class="pill pill-amber ml-2 font-mono">Target prod: 1ª sem junio</span>
       </div>
       <h1 class="text-4xl font-semibold text-white mb-2">Dr House Bienes Raíces</h1>
       <p class="text-zinc-400 text-lg mb-8 serif-italic">Bot Adrián · Sistema comercial GHL · Uruguay</p>
@@ -142,11 +143,11 @@
           <div>
             <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-3">Negocio</p>
             <table class="w-full text-sm">
-              <tr class="border-b border-white/[0.04]"><td class="py-2 text-zinc-500 w-40">Dueño + equipo</td><td class="py-2 text-zinc-200">Dueño + 2 brokers de venta</td></tr>
+              <tr class="border-b border-white/[0.04]"><td class="py-2 text-zinc-500 w-40">Equipo</td><td class="py-2 text-zinc-200">Adrián (dueño) + Fernanda + Agustín — asignación abierta</td></tr>
               <tr class="border-b border-white/[0.04]"><td class="py-2 text-zinc-500">Zonas core</td><td class="py-2 text-zinc-200">Punta del Este · La Barra · Punta Ballena · José Ignacio · MVD</td></tr>
               <tr class="border-b border-white/[0.04]"><td class="py-2 text-zinc-500">Horario</td><td class="py-2 text-zinc-200">Dom–Dom 10:00–19:00 (bot 7:00–00:00)</td></tr>
               <tr class="border-b border-white/[0.04]"><td class="py-2 text-zinc-500">Matrícula</td><td class="py-2 text-zinc-200">OT 1529</td></tr>
-              <tr><td class="py-2 text-zinc-500">CRM actual</td><td class="py-2 text-zinc-200">Tera CRM → GHL nuevo</td></tr>
+              <tr><td class="py-2 text-zinc-500">Inventario</td><td class="py-2 text-zinc-200">Word/PDF con links por rango de precio (a entregar por Adrián)</td></tr>
             </table>
           </div>
           <div>
@@ -163,6 +164,17 @@
         <div class="mt-6 pt-6 border-t border-white/[0.04]">
           <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-3">Punto crítico del negocio</p>
           <p class="text-zinc-300 text-sm leading-relaxed">El dueño atiende ~100 leads/semana de Instagram <strong>solo, sin sistema</strong>. Los leads se pierden en el seguimiento desordenado. Con 1 venta extra recuperada al mes = <strong>+USD 15.000 de comisión</strong> — el sistema se paga en la primera operación.</p>
+        </div>
+        <div class="mt-6 pt-6 border-t border-white/[0.04]">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-3">Actualización R2 · 2026-05-22</p>
+          <ul class="text-zinc-300 text-sm leading-relaxed space-y-1.5 list-disc list-inside">
+            <li>Equipo operativo confirmado: <strong>Fernanda + Agustín</strong> trabajan el día a día con Adrián.</li>
+            <li>Preguntas de calificación <strong>validadas sin cambios</strong> por el equipo.</li>
+            <li>Envío de propiedades: <strong>Word/PDF con links agrupados por rango de precio</strong> (no matching automático). Adrián arma el documento.</li>
+            <li>Canal principal confirmado: <strong>Instagram</strong>. WhatsApp queda pendiente decisión Business.</li>
+            <li>Asignación: <strong>abierta</strong> (cualquiera atiende cualquier lead, no por zona ni monto).</li>
+            <li>Expectativa Adrián: <strong>2 leads calientes/tibios por mes</strong>, piso USD 100k.</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -223,7 +235,7 @@
                 <span class="pill pill-cyan text-[10px]">tipo propiedad</span>
                 <span class="pill pill-cyan text-[10px]">plazo decision</span>
               </div>
-              <p class="desc">Bot envía 2-3 links. Si lead activo → handoff humano inmediato.</p>
+              <p class="desc">Bot envía link del rango que matchea el presupuesto. Si lead activo → handoff humano inmediato.</p>
             </div>
           </div>
 
@@ -250,7 +262,7 @@
               <span class="pill pill-blue text-[10px]">Trigger: bot completa calificación</span>
               <span class="pill pill-amber text-[10px]">⏰ Follow-up en 2 días</span>
               <div class="flex flex-wrap gap-1"><span class="pill pill-cyan text-[10px]">propiedades enviadas</span></div>
-              <p class="desc">Broker revisa perfil y hace seguimiento personalizado dentro de 48 hs.</p>
+              <p class="desc">Fernanda o Agustín revisa perfil y hace seguimiento personalizado dentro de 48 hs.</p>
             </div>
           </div>
 
@@ -516,8 +528,10 @@
               <thead><tr><th>Custom Value</th><th>Valor</th></tr></thead>
               <tbody>
                 <tr><td><code>correo_de_salida</code></td><td>Email del equipo para Send Email actions</td></tr>
-                <tr><td><code>link_portfolio_venta</code></td><td>URL del catálogo de ventas activas</td></tr>
-                <tr><td><code>link_portfolio_alquiler</code></td><td>URL del catálogo de alquileres activos</td></tr>
+                <tr><td><code>link_propiedades_venta_bajo</code></td><td>Link a ventas &lt; USD 300k (Word/PDF que entrega Adrián)</td></tr>
+                <tr><td><code>link_propiedades_venta_medio</code></td><td>Link a ventas USD 300k–800k</td></tr>
+                <tr><td><code>link_propiedades_venta_alto</code></td><td>Link a ventas &gt; USD 800k</td></tr>
+                <tr><td><code>link_propiedades_alquiler</code></td><td>Link al catálogo de alquileres activos</td></tr>
                 <tr><td><code>horario_atencion</code></td><td>"domingo a domingo de 10 a 19 hs"</td></tr>
                 <tr><td><code>nombre_inmobiliaria</code></td><td>"Dr House Bienes Raíces"</td></tr>
               </tbody>
@@ -793,7 +807,7 @@
 
 4. Con los 4 datos completados:
    a. Guardá con Add Contact Info (4 campos)
-   b. Enviá 2-3 links de propiedades de Tera CRM que matcheen el perfil
+   b. Enviá EL link del rango que corresponda al presupuesto del lead (custom values link_propiedades_*)
    c. Cerrá con: "¿Cómo te quedaron las opciones? ¿Querés que te busquemos más o coordinamos una visita?"
 
 5. SEGUIMIENTO: si en 2 días no respondió, re-contactar: "¿Cómo venís con la búsqueda? ¿Pudiste ver las opciones que te mandé?"
@@ -824,7 +838,7 @@
 &lt;rules&gt;
 - Máximo 2-3 líneas por mensaje. Máximo 1 emoji por turno. Tono siempre cálido y directo.
 - Horario activo: 7:00 am a 00:00 hs. Fuera de horario: "Son las [hora] y el equipo ya cerró, pero mañana desde las 7 te atendemos. ¿Te parece si te escribo a primera hora?" → Stop Bot.
-- Enviás links de propiedades de Tera CRM, no imágenes sueltas. Máximo 3 links por turno.
+- Enviás UN link de propiedades (el del rango que matchea el presupuesto), no imágenes sueltas.
 - NO das precios negociados. NO comprometés al propietario en condiciones sin confirmación. NO asesorás legalmente. NO decís que una propiedad "es una ganga". NO garantizás nada.
 - Si preguntan comisiones: "Te lo confirma el equipo enseguida, yo no manejo eso."
 - Si preguntan si sos IA: podés confirmar sin entrar en detalle.
@@ -865,7 +879,7 @@ Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precio
 
 ###mandatory instruction: cuando el lead tenga los 4 datos (tipo de operación + presupuesto max usd + zona preferida + tipo propiedad), ejecutá en este orden EXACTO:
 1. Add Contact Info: guardá los 4 campos en los custom fields correspondientes.
-2. Enviá 2-3 links de propiedades que matcheen (de {{custom_values.link_portfolio_venta}} o {{custom_values.link_portfolio_alquiler}}).
+2. Enviá EL link del rango que corresponda: presupuesto &lt; 300k → {{custom_values.link_propiedades_venta_bajo}} · 300k–800k → {{custom_values.link_propiedades_venta_medio}} · &gt; 800k → {{custom_values.link_propiedades_venta_alto}} · alquiler → {{custom_values.link_propiedades_alquiler}}.
 3. Add Contact Info: guardá temperatura lead (caliente si plazo &lt;6 meses, frio si &gt;6 meses).
 4. Si lead con plazo corto/mediano y muestra interés activo: Human Handover con nota "Lead calificado — [zona] [presupuesto] [tipo]".</div>
           <button class="copy-btn" onclick="copyBlock(this,'prompt-additional')">
@@ -991,7 +1005,8 @@ Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precio
           <div class="space-y-1">
             <label class="check-item"><input type="checkbox"><span class="check-label">Decisión WhatsApp: Opción A (API Oficial) vs Opción B (no oficial)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Accesos: Meta Business Manager + Instagram + Facebook Page</span></label>
-            <label class="check-item"><input type="checkbox"><span class="check-label">Listado de propiedades activas con link Tera CRM (para bot y custom values)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Adrián entrega Word/PDF con links de propiedades agrupados por rango (bajo/medio/alto + alquiler)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Adrián decide WhatsApp Business (mismo número o chip nuevo solo laboral)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Nombres de los 2 brokers + reglas de asignación por zona/monto (para WF-02)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Logo + paleta de colores de Dr House (para SHARP)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Número de WhatsApp Business a conectar</span></label>
@@ -1007,7 +1022,8 @@ Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precio
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear Pipeline Demanda (15 etapas · colores por zona)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear Pipeline Captación (7 etapas)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear carpeta "adrián bot" + 11 Custom Fields (todos TEXT)</span></label>
-            <label class="check-item"><input type="checkbox"><span class="check-label">Crear Custom Values (correo_de_salida, link_portfolio_venta, link_portfolio_alquiler, horario_atencion)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear Custom Values (correo_de_salida, link_propiedades_venta_bajo/medio/alto, link_propiedades_alquiler, horario_atencion)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Conectar Instagram al CRM (canal principal confirmado en R2)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear los 8 tags del sistema</span></label>
           </div>
         </div>
@@ -1047,7 +1063,7 @@ Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precio
           <p class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-4">Fase 4 · Integraciones avanzadas (pendiente R2)</p>
           <div class="space-y-1">
             <label class="check-item"><input type="checkbox"><span class="check-label">Facebook Lead Ads → GHL (Meta Ads activos USD 1.000/mes)</span></label>
-            <label class="check-item"><input type="checkbox"><span class="check-label">Tera CRM → sincronización o importación de inventario de propiedades</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Clase intensiva grabada con equipo completo (Adrián + Fernanda + Agustín) — target 1ª semana junio</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Google Calendar / Calendly para coordinación de visitas</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Knowledge Base del bot (zonas, tipos de propiedad, garantías, proceso de compra Uruguay)</span></label>
           </div>
