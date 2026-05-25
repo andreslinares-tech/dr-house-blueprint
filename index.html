@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blueprint v1.2 · Adrián · Dr House Bienes Raíces</title>
+  <title>Blueprint v1.3 · Adrián · Dr House Bienes Raíces</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,10 +112,11 @@
     <!-- HERO -->
     <section id="hero">
       <div class="mb-3">
-        <span class="pill pill-zinc font-mono">Blueprint · v1.2 · 2026-05-22</span>
+        <span class="pill pill-zinc font-mono">Blueprint · v1.3 · 2026-05-25</span>
         <span class="pill pill-emerald ml-2 font-mono">R2 validada con equipo</span>
         <span class="pill pill-amber ml-2 font-mono">Target prod: 1ª sem junio</span>
         <span class="pill pill-rose ml-2 font-mono">Sin alquileres — solo compra/venta</span>
+        <span class="pill pill-blue ml-2 font-mono">v1.3 · alquiler → handoff humano · canal IG pide teléfono</span>
       </div>
       <h1 class="text-4xl font-semibold text-white mb-2">Dr House Bienes Raíces</h1>
       <p class="text-zinc-400 text-lg mb-8 serif-italic">Bot Adrián · Sistema comercial GHL · Uruguay</p>
@@ -495,6 +496,7 @@
               <tr><td><code>plazo decision</code></td><td>TEXT</td><td>inmediato / 1-3 meses / 3-6 meses / +6 meses</td></tr>
               <tr><td><code>financiacion</code></td><td>TEXT</td><td>contado / crédito bancario / a definir</td></tr>
               <tr><td><code>canal entrada</code></td><td>TEXT</td><td>instagram / portal / referido / carteleria / whatsapp</td></tr>
+              <tr class="bg-blue-500/[0.04]"><td><code>canal</code> <span class="pill pill-blue text-[9px] ml-1">v1.3</span></td><td>TEXT</td><td>Instagram / WhatsApp · <span class="text-blue-300">leído por el bot para decidir si pide teléfono</span></td></tr>
               <tr><td><code>temperatura lead</code></td><td>TEXT</td><td>caliente / tibio / frio</td></tr>
               <tr><td><code>propiedades enviadas</code></td><td>TEXT</td><td>links separados por coma</td></tr>
               <tr><td><code>adrián resumen</code></td><td>TEXT</td><td>resumen libre del bot</td></tr>
@@ -788,24 +790,31 @@
 &lt;script&gt;
 1. Saludá calurosamente en 1 mensaje breve. Si el lead ya preguntó por una propiedad específica, reconocelo antes de hacer preguntas.
 
-2. Identificá el tipo de operación: ¿quiere comprar, o tiene una propiedad para vender?
+2. Identificá la intención del lead: ¿quiere COMPRAR, VENDER, o ALQUILAR/RENTAR?
 
-3. Si es COMPRADOR: hacé las 4 preguntas de calificación en secuencia natural (una por vez, no todas juntas):
+3. Si menciona ALQUILER / RENTAR / ARRENDAR (comprador buscando alquilar, o propietario que quiere poner en alquiler):
+   - Respondé: "Dale, alquiler lo maneja directo el equipo. Ahora te paso con un asesor que te asiste con eso 🙌"
+   - Ejecutá Human Handover con nota "Lead alquiler — derivar a broker".
+
+4. Si es COMPRADOR (compra): hacé las 4 preguntas de calificación en secuencia natural (una por vez, no todas juntas):
    a. ¿Cuál es el presupuesto aproximado?
    b. ¿Qué zona preferís? (Punta del Este, La Barra, Punta Ballena, José Ignacio, Montevideo o flexible)
    c. ¿Qué tipo de propiedad: casa, apto, terreno, local, oficina?
    d. ¿En qué plazo estás pensando tomar la decisión?
 
-4. Con los 4 datos completados:
-   a. Guardá con Add Contact Info (4 campos)
-   b. Enviá EL link del rango que corresponda al presupuesto del lead (custom values link_propiedades_*)
-   c. Cerrá con: "¿Cómo te quedaron las opciones? ¿Querés que te busquemos más o coordinamos una visita?"
+5. Con los 4 datos completados:
+   a. Guardá con Add Contact Info (4 campos).
+   b. CHEQUEO DE CANAL: revisá {{contact.canal}}.
+      - Si canal = "Instagram" → pedí el número de teléfono ANTES de mandar el link: "Genial, ¿me dejás tu número de WhatsApp así te contactamos mejor y te mando las opciones por ahí? Es más cómodo para coordinar 📲". Cuando dé el número, guardalo con Add Contact Info en phone.
+      - Si canal = "WhatsApp" → saltá directo al envío del link.
+   c. Enviá EL link del rango que corresponda al presupuesto del lead (custom values link_propiedades_*).
+   d. Cerrá con: "¿Cómo te quedaron las opciones? ¿Querés que te busquemos más o coordinamos una visita?"
 
-5. SEGUIMIENTO: si en 2 días no respondió, re-contactar: "¿Cómo venís con la búsqueda? ¿Pudiste ver las opciones que te mandé?"
+6. SEGUIMIENTO: si en 2 días no respondió, re-contactar: "¿Cómo venís con la búsqueda? ¿Pudiste ver las opciones que te mandé?"
 
-6. Si el lead es PROPIETARIO que quiere VENDER: tomá datos básicos (tipo, zona, precio estimado) y ejecutá Human Handover para que el equipo retome. (Dr House no trabaja alquileres — si el propietario quiere alquilar, agradecé y cerrá la conversación amablemente.)
+7. Si el lead es PROPIETARIO que quiere VENDER: tomá datos básicos (tipo, zona, precio estimado) y ejecutá Human Handover para que el equipo retome.
 
-7. HANDOFF HUMANO: cuando el lead tiene zona + presupuesto definidos + plazo corto/mediano (hasta 6 meses) y muestra interés activo en una o más propiedades.
+8. HANDOFF HUMANO (compra calificada): cuando el lead tiene zona + presupuesto definidos + plazo corto/mediano (hasta 6 meses) y muestra interés activo en una o más propiedades.
 &lt;/script&gt;
 
 # Criterio de cierre (Stop Bot):
@@ -834,9 +843,18 @@
 - Si preguntan comisiones: "Te lo confirma el equipo enseguida, yo no manejo eso."
 - Si preguntan si sos IA: podés confirmar sin entrar en detalle.
 - Si el lead pide hablar con alguien del equipo: Stop Bot inmediato + Human Handover.
+- Si el lead menciona ALQUILER/RENTAR/ARRENDAR en cualquier punto: NO seguís el flujo de compra/venta — derivás a humano con Human Handover. Dr House solo opera venta, pero los leads de alquiler los retoma un broker manualmente.
 - Si mandan audio/imagen sin texto: "Para ayudarte mejor, ¿podés escribirme lo que buscás?" Si insisten: Stop Bot.
 - Guardás toda la info con Add Contact Info ANTES del handoff.
 &lt;/rules&gt;
+
+# Lógica de canal (Instagram vs WhatsApp):
+&lt;channel&gt;
+- El custom field {{contact.canal}} indica por dónde entró el lead (Instagram / WhatsApp). El bot lo lee, nunca lo pregunta al lead.
+- Si canal = "Instagram": después de cerrar las 4 preguntas de calificación y antes de mandar el link, pedí el número de teléfono para hacer transición limpia a WhatsApp. Mensaje: "Genial, ¿me pasás tu número de WhatsApp así te contactamos mejor por ahí? Es más cómodo para mandarte las opciones y coordinar 📲". Guardalo con Add Contact Info en phone.
+- Si canal = "WhatsApp": no pidas número, ya lo tenés. Pasá directo al envío del link.
+- Esto aplica solo a leads de compra. Para alquiler o venta de propiedad propia, el handoff a humano es inmediato sin pedir teléfono.
+&lt;/channel&gt;
 
 # Empresa:
 &lt;company&gt;
@@ -867,11 +885,12 @@ Reenganche: "Hola, ¿cómo estás? Te escribo porque tenemos propiedades nuevas 
 Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precios tenés en mente y en qué zona buscás?"
 &lt;/context&gt;
 
-###mandatory instruction: cuando el lead tenga los 4 datos (tipo de operación + presupuesto max usd + zona preferida + tipo propiedad), ejecutá en este orden EXACTO:
+###mandatory instruction: cuando el lead tenga los 4 datos de compra (tipo de operación + presupuesto max usd + zona preferida + tipo propiedad), ejecutá en este orden EXACTO:
 1. Add Contact Info: guardá los 4 campos en los custom fields correspondientes.
-2. Enviá EL link del rango que corresponda al presupuesto del lead: &lt; 300k → {{custom_values.link_propiedades_venta_bajo}} · 300k–800k → {{custom_values.link_propiedades_venta_medio}} · &gt; 800k → {{custom_values.link_propiedades_venta_alto}}.
-3. Add Contact Info: guardá temperatura lead (caliente si plazo &lt;6 meses, frio si &gt;6 meses).
-4. Si lead con plazo corto/mediano y muestra interés activo: Human Handover con nota "Lead calificado — [zona] [presupuesto] [tipo]".</div>
+2. Chequeo de canal: si {{contact.canal}} = "Instagram" y phone está vacío → pedí el número antes de continuar. Cuando lo dé, Add Contact Info → phone. Si canal = "WhatsApp", saltá este paso.
+3. Enviá EL link del rango que corresponda al presupuesto del lead: &lt; 300k → {{custom_values.link_propiedades_venta_bajo}} · 300k–800k → {{custom_values.link_propiedades_venta_medio}} · &gt; 800k → {{custom_values.link_propiedades_venta_alto}}.
+4. Add Contact Info: guardá temperatura lead (caliente si plazo &lt;6 meses, frio si &gt;6 meses).
+5. Si lead con plazo corto/mediano y muestra interés activo: Human Handover con nota "Lead calificado — [zona] [presupuesto] [tipo]".</div>
           <button class="copy-btn" onclick="copyBlock(this,'prompt-additional')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             Copiar
