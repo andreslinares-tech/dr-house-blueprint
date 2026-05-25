@@ -115,8 +115,8 @@
         <span class="pill pill-zinc font-mono">Blueprint · v1.3 · 2026-05-25</span>
         <span class="pill pill-emerald ml-2 font-mono">R2 validada con equipo</span>
         <span class="pill pill-amber ml-2 font-mono">Target prod: 1ª sem junio</span>
-        <span class="pill pill-rose ml-2 font-mono">Sin alquileres — solo compra/venta</span>
-        <span class="pill pill-blue ml-2 font-mono">v1.3 · alquiler → handoff humano · canal IG pide teléfono</span>
+        <span class="pill pill-rose ml-2 font-mono">Bot solo compra/venta — alquiler deriva al área</span>
+        <span class="pill pill-blue ml-2 font-mono">v1.3 · alquiler → área alquileres · canal IG pide teléfono</span>
       </div>
       <h1 class="text-4xl font-semibold text-white mb-2">Dr House Bienes Raíces</h1>
       <p class="text-zinc-400 text-lg mb-8 serif-italic">Bot Adrián · Sistema comercial GHL · Uruguay</p>
@@ -176,7 +176,7 @@
             <li>Canal principal confirmado: <strong>Instagram</strong>. WhatsApp queda pendiente decisión Business.</li>
             <li>Asignación: <strong>abierta</strong> (cualquiera atiende cualquier lead, no por zona ni monto).</li>
             <li>Expectativa Adrián: <strong>2 leads calientes/tibios por mes</strong>, piso USD 100k.</li>
-            <li><strong>Sin alquileres</strong>: el negocio trabaja solo compra (demanda) + captación de propietarios que venden. Toda lógica de alquileres queda fuera de scope.</li>
+            <li><strong>Alquileres fuera del bot</strong>: Dr House SÍ trabaja alquileres, pero este bot está enfocado solo en compra/venta + captación. Cuando un lead pide alquilar, Adrián deriva amablemente al <strong>área de alquileres</strong> y dispara notificación interna + email al asesor asignado (WF-06).</li>
           </ul>
         </div>
       </div>
@@ -511,7 +511,8 @@
             <div class="space-y-2 text-sm">
               <div><span class="pill pill-violet">Bot</span> <code class="text-xs text-violet-300 ml-2">bot_adrián_activo</code> · <code class="text-xs text-violet-300">bot_adrián_completo</code></div>
               <div><span class="pill pill-emerald">Estado lead</span> <code class="text-xs text-emerald-300 ml-2">lead_calificado</code> · <code class="text-xs text-emerald-300">lead_descartado</code> · <code class="text-xs text-emerald-300">lead_no_show</code></div>
-              <div><span class="pill pill-blue">Canal</span> <code class="text-xs text-blue-300 ml-2">canal_comprador</code> · <code class="text-xs text-blue-300">canal_captacion</code></div>
+              <div><span class="pill pill-blue">Canal</span> <code class="text-xs text-blue-300 ml-2">canal_comprador</code> · <code class="text-xs text-blue-300">canal_captacion</code> · <code class="text-xs text-rose-300">canal_alquiler</code></div>
+              <div><span class="pill pill-rose">Operación</span> <code class="text-xs text-rose-300 ml-2">operacion_alquiler</code> <span class="text-[10px] text-zinc-500">(reportería)</span></div>
               <div><span class="pill pill-amber">Temperatura</span> <code class="text-xs text-amber-300 ml-2">temp_caliente</code> · <code class="text-xs text-amber-300">temp_tibio</code> · <code class="text-xs text-amber-300">temp_frio</code></div>
               <div><span class="pill pill-cyan">Nurturing</span> <code class="text-xs text-cyan-300 ml-2">nurturing_activo</code> · <code class="text-xs text-cyan-300">nurturing_pausado</code></div>
             </div>
@@ -696,6 +697,39 @@
           </div>
         </div>
       </details>
+
+      <!-- WF6 -->
+      <details class="wf-card">
+        <summary>
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="pill pill-rose font-mono">WF-06</span>
+            <span class="text-white font-semibold">Lead Alquiler → Notificar Área Alquileres</span>
+            <span class="pill pill-zinc text-[10px]">Trigger: tag canal_alquiler</span>
+            <span class="pill pill-blue text-[10px]">nuevo en v1.3</span>
+          </div>
+        </summary>
+        <div class="wf-body">
+          <p class="text-zinc-400 text-sm mb-4">Cuando Adrián detecta intención de alquiler, dispara este WF: levanta la mano al asesor de alquileres por notificación interna <strong>y</strong> email, y deja el contacto fuera del bot para que el asesor tome el hilo.</p>
+          <table class="step-table mb-6">
+            <thead><tr><th>Paso</th><th>Acción</th><th>Config</th></tr></thead>
+            <tbody>
+              <tr><td>1 · Trigger</td><td>Tag Added</td><td>Tag: <code>canal_alquiler</code></td></tr>
+              <tr><td>2 · Asignar</td><td>Assign User</td><td>Asesor de Alquileres (usuario responsable del área — definir en R3)</td></tr>
+              <tr><td>3 · Notificación interna</td><td>Internal Notification</td><td>"🏠 Nuevo lead de ALQUILER. Contacto: {{contact.first_name}} {{contact.last_name}} · Tel: {{contact.phone}} · Canal: {{contact.canal}}. Revisar conversación y contactar dentro de 1h."</td></tr>
+              <tr><td>4 · Email al asesor</td><td>Send Email (interno)</td><td>To: asesor de alquileres · From: <code>{{custom_values.correo_de_salida}}</code> · Subject: "Nuevo lead de alquiler — {{contact.first_name}}" · Body: resumen del lead + link a la conversación en GHL</td></tr>
+              <tr><td>5 · Tag operación</td><td>Add Tag</td><td><code>operacion_alquiler</code> (para reportería)</td></tr>
+              <tr><td>6 · Stop bot</td><td>Deactivate Bot</td><td>Stop Bot Adrián — el asesor de alquileres toma el hilo manualmente</td></tr>
+            </tbody>
+          </table>
+          <div class="prompt-wrap">
+            <div class="prompt-block amber" id="wf6-prompt">Crea un workflow llamado "WF-06 · Lead Alquiler — Notificar Área Alquileres" con estas instrucciones: Trigger: Tag Added con el tag canal_alquiler. Este workflow se activa cuando Adrián identifica que el lead quiere alquilar una propiedad (Dr House sí trabaja alquileres pero los maneja un área especializada, no el bot). Paso 1: asignar el contacto al asesor responsable del área de alquileres con la acción Assign User. Paso 2: enviar una notificación interna al asesor de alquileres que diga "🏠 Nuevo lead de ALQUILER. Contacto: {{contact.first_name}} {{contact.last_name}}, teléfono {{contact.phone}}, canal {{contact.canal}}. Revisar conversación y contactar dentro de 1 hora." Paso 3: enviar un email interno al asesor de alquileres usando como remitente {{custom_values.correo_de_salida}}, con asunto "Nuevo lead de alquiler — {{contact.first_name}}" y cuerpo que incluya el resumen del lead (nombre, teléfono, canal de entrada) más el link a la conversación dentro de GHL. Paso 4: agregar el tag operacion_alquiler al contacto para reportería. Paso 5: desactivar el bot Adrián con la acción Deactivate Bot para que el asesor de alquileres tome el hilo de la conversación manualmente. El objetivo es que ningún lead de alquiler quede sin seguimiento humano inmediato y que el asesor reciba el aviso por dos canales (notificación interna en GHL + email) para no perderse el lead.</div>
+            <button class="copy-btn" onclick="copyBlock(this,'wf6-prompt')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+        </div>
+      </details>
     </section>
     <section id="bot">
       <div class="mb-6">
@@ -793,8 +827,9 @@
 2. Identificá la intención del lead: ¿quiere COMPRAR, VENDER, o ALQUILAR/RENTAR?
 
 3. Si menciona ALQUILER / RENTAR / ARRENDAR (comprador buscando alquilar, o propietario que quiere poner en alquiler):
-   - Respondé: "Dale, alquiler lo maneja directo el equipo. Ahora te paso con un asesor que te asiste con eso 🙌"
-   - Ejecutá Human Handover con nota "Lead alquiler — derivar a broker".
+   - Respondé: "¡Dale! Alquileres lo lleva nuestra área especializada. Ahora te transfiero con el asesor de alquileres que te va a dar una mano 🙌"
+   - Aplicá el tag canal_alquiler (esto dispara WF-06 que notifica al asesor de alquileres por mensaje interno + email).
+   - Ejecutá Human Handover con nota "Lead alquiler — derivar a área de alquileres".
 
 4. Si es COMPRADOR (compra): hacé las 4 preguntas de calificación en secuencia natural (una por vez, no todas juntas):
    a. ¿Cuál es el presupuesto aproximado?
@@ -843,7 +878,7 @@
 - Si preguntan comisiones: "Te lo confirma el equipo enseguida, yo no manejo eso."
 - Si preguntan si sos IA: podés confirmar sin entrar en detalle.
 - Si el lead pide hablar con alguien del equipo: Stop Bot inmediato + Human Handover.
-- Si el lead menciona ALQUILER/RENTAR/ARRENDAR en cualquier punto: NO seguís el flujo de compra/venta — derivás a humano con Human Handover. Dr House solo opera venta, pero los leads de alquiler los retoma un broker manualmente.
+- Si el lead menciona ALQUILER/RENTAR/ARRENDAR en cualquier punto: NO seguís el flujo de compra/venta. Dr House SÍ trabaja alquileres — pero los maneja un área especializada, no vos. Aplicá tag canal_alquiler + Human Handover. El WF-06 se encarga de avisar al asesor de alquileres por notificación interna + email.
 - Si mandan audio/imagen sin texto: "Para ayudarte mejor, ¿podés escribirme lo que buscás?" Si insisten: Stop Bot.
 - Guardás toda la info con Add Contact Info ANTES del handoff.
 &lt;/rules&gt;
@@ -1051,6 +1086,8 @@ Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precio
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-03 Cadencia Re-engagement</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-04 No Show Recuperación</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-05 Propietario Nuevo → Captación</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-06 Lead Alquiler → Notificar Área Alquileres (notif interna + email)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Confirmar con Pablo el asesor responsable del área de alquileres (para WF-06)</span></label>
           </div>
         </div>
 
