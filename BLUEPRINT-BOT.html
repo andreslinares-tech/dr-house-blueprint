@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blueprint v1.3 · Adrián · Dr House Bienes Raíces</title>
+  <title>Blueprint v1.4 · Adrián · Dr House Bienes Raíces</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,11 +112,11 @@
     <!-- HERO -->
     <section id="hero">
       <div class="mb-3">
-        <span class="pill pill-zinc font-mono">Blueprint · v1.3 · 2026-05-25</span>
+        <span class="pill pill-zinc font-mono">Blueprint · v1.4 · 2026-05-28</span>
         <span class="pill pill-emerald ml-2 font-mono">R2 validada con equipo</span>
         <span class="pill pill-amber ml-2 font-mono">Target prod: 1ª sem junio</span>
         <span class="pill pill-rose ml-2 font-mono">Bot solo compra/venta — alquiler deriva al área</span>
-        <span class="pill pill-blue ml-2 font-mono">v1.3 · alquiler → área alquileres · canal IG pide teléfono</span>
+        <span class="pill pill-blue ml-2 font-mono">v1.4 · pipeline reestructurado con Pablo (28-may) · nuevo flujo No Responde</span>
       </div>
       <h1 class="text-4xl font-semibold text-white mb-2">Dr House Bienes Raíces</h1>
       <p class="text-zinc-400 text-lg mb-8 serif-italic">Bot Adrián · Sistema comercial GHL · Uruguay</p>
@@ -187,7 +187,7 @@
       <div class="mb-6">
         <span class="pill pill-violet font-mono mb-3 block w-fit">01 · Pipeline Demanda</span>
         <h2 class="text-2xl font-semibold text-white">Pipeline Demanda · Dr House</h2>
-        <p class="text-zinc-500 text-sm mt-1">Compradores — 14 etapas en 3 zonas funcionales</p>
+        <p class="text-zinc-500 text-sm mt-1">Compradores — 14 etapas en 3 zonas funcionales · <span class="text-blue-300">v1.4: bot zone reestructurada con Pablo (Nuevo Lead → En Conversación → Seguimiento → Calificado/Propiedad enviada → No Responde)</span></p>
       </div>
 
       <!-- Zona labels -->
@@ -209,36 +209,28 @@
               <p class="font-semibold text-white text-sm">🔵 Nuevo Lead</p>
               <span class="pill pill-violet text-[10px]">Trigger: primer mensaje entrante</span>
               <span class="pill pill-amber text-[10px]">⏰ Bienvenida &lt; 30 seg</span>
-              <p class="desc">Lead entra al pipeline. Bot Adrián se activa automáticamente.</p>
+              <p class="desc">Todos los leads entran acá automático (WF-00 Bienvenida). El bot se activa y el asesor queda asignado desde el primer mensaje. <strong>En esta etapa no debería quedar nadie</strong> — la mueven el bot o el asesor.</p>
             </div>
           </div>
 
           <div class="stage-card">
-            <div class="accent" style="background:#8B5CF6;"></div>
+            <div class="accent" style="background:#3B82F6;"></div>
             <div class="body">
-              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">02</span><span class="pill pill-violet">bot</span></div>
-              <p class="font-semibold text-white text-sm">🔵 En Conversación</p>
-              <span class="pill pill-violet text-[10px]">Trigger: bot responde</span>
-              <span class="pill pill-amber text-[10px]">⏰ Calificar &lt; 48 hs</span>
-              <div class="flex flex-wrap gap-1"><span class="pill pill-cyan text-[10px]">tipo de operación</span></div>
-              <p class="desc">Adrián hace las 4 preguntas de calificación en forma natural.</p>
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">02</span><span class="pill pill-blue">humano</span></div>
+              <p class="font-semibold text-white text-sm">💬 En Conversación</p>
+              <span class="pill pill-blue text-[10px]">Trigger: manual (asesor)</span>
+              <p class="desc">El asesor toma la conversación manualmente cuando el lead respondió pero todavía no completó las 4 preguntas. <strong>Movimiento manual</strong>: el equipo lo levanta porque están hablando con esa persona.</p>
             </div>
           </div>
 
           <div class="stage-card">
-            <div class="accent" style="background:#8B5CF6;"></div>
+            <div class="accent" style="background:#3B82F6;"></div>
             <div class="body">
-              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">03</span><span class="pill pill-violet">bot</span></div>
-              <p class="font-semibold text-white text-sm">🔵🟢 Calificado</p>
-              <span class="pill pill-violet text-[10px]">Trigger: 4 datos completos</span>
-              <span class="pill pill-amber text-[10px]">⏰ Enviar propiedades &lt; 5 min</span>
-              <div class="flex flex-wrap gap-1">
-                <span class="pill pill-cyan text-[10px]">presupuesto max usd</span>
-                <span class="pill pill-cyan text-[10px]">zona preferida</span>
-                <span class="pill pill-cyan text-[10px]">tipo propiedad</span>
-                <span class="pill pill-cyan text-[10px]">plazo decision</span>
-              </div>
-              <p class="desc">Bot envía link del rango que matchea el presupuesto. Si lead activo → handoff humano inmediato.</p>
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">03</span><span class="pill pill-blue">humano</span></div>
+              <p class="font-semibold text-white text-sm">🔁 Seguimiento</p>
+              <span class="pill pill-blue text-[10px]">Trigger: manual (asesor)</span>
+              <span class="pill pill-amber text-[10px]">⏰ Cadencia activa</span>
+              <p class="desc">Lead que estaba en conversación y dejó de responder, pero el asesor lo sigue trabajando. <strong>Movimiento manual</strong> desde En Conversación cuando se enfría la respuesta pero el asesor todavía cree que hay interés.</p>
             </div>
           </div>
 
@@ -246,10 +238,27 @@
             <div class="accent" style="background:#8B5CF6;"></div>
             <div class="body">
               <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">04</span><span class="pill pill-violet">bot</span></div>
-              <p class="font-semibold text-white text-sm">🔵🔴 Descartado Bot</p>
-              <span class="pill pill-violet text-[10px]">Trigger: 3 follow-ups sin respuesta</span>
-              <span class="pill pill-amber text-[10px]">⏰ Re-check en 30 días</span>
-              <p class="desc">Sin respuesta tras 3 intentos. Entra en cadencia mensual de re-engagement.</p>
+              <p class="font-semibold text-white text-sm">🟢 Calificado / Propiedad Enviada</p>
+              <span class="pill pill-violet text-[10px]">Trigger: 4 datos + link enviado</span>
+              <span class="pill pill-amber text-[10px]">⏰ Espera 2 hs respuesta</span>
+              <div class="flex flex-wrap gap-1">
+                <span class="pill pill-cyan text-[10px]">presupuesto max usd</span>
+                <span class="pill pill-cyan text-[10px]">zona preferida</span>
+                <span class="pill pill-cyan text-[10px]">tipo propiedad</span>
+                <span class="pill pill-cyan text-[10px]">plazo decision</span>
+              </div>
+              <p class="desc">Etapa unificada (antes "Calificado" + "Propiedades Enviadas"): cuando el bot termina las 4 preguntas y envía el link, el WF-01 mueve la oportunidad acá + notifica al asesor + dispara SMS de seguimiento a las 2 hs. <strong>Auto desde el bot</strong>.</p>
+            </div>
+          </div>
+
+          <div class="stage-card">
+            <div class="accent" style="background:#8B5CF6;"></div>
+            <div class="body">
+              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">05</span><span class="pill pill-violet">bot</span></div>
+              <p class="font-semibold text-white text-sm">🔴 No Responde</p>
+              <span class="pill pill-violet text-[10px]">Trigger: 2 hs sin respuesta post-propiedad</span>
+              <span class="pill pill-rose text-[10px]">o manual por asesor</span>
+              <p class="desc">Reemplaza a "Descartado Bot". Lead que ya recibió la propiedad pero no respondió, o que el asesor archiva manual. El <strong>WF-02 No Responde</strong> avisa al asesor solo si lo movió el bot (si lo movió un humano, ya sabe).</p>
             </div>
           </div>
 
@@ -257,18 +266,6 @@
           <div class="flex items-center px-1 text-zinc-700 text-lg font-light select-none">│</div>
 
           <!-- Zona 2 — Humana (blue) -->
-          <div class="stage-card">
-            <div class="accent" style="background:#3B82F6;"></div>
-            <div class="body">
-              <div class="flex items-center justify-between"><span class="pill pill-zinc font-mono text-[10px]">05</span><span class="pill pill-blue">humano</span></div>
-              <p class="font-semibold text-white text-sm">Propiedades Enviadas</p>
-              <span class="pill pill-blue text-[10px]">Trigger: bot completa calificación</span>
-              <span class="pill pill-amber text-[10px]">⏰ Follow-up en 2 días</span>
-              <div class="flex flex-wrap gap-1"><span class="pill pill-cyan text-[10px]">propiedades enviadas</span></div>
-              <p class="desc">Fernanda o Agustín revisa perfil y hace seguimiento personalizado dentro de 48 hs.</p>
-            </div>
-          </div>
-
           <div class="stage-card">
             <div class="accent" style="background:#3B82F6;"></div>
             <div class="body">
@@ -380,13 +377,15 @@
         <table class="step-table">
           <thead><tr><th>De</th><th>A</th><th>Trigger</th></tr></thead>
           <tbody>
-            <tr><td>Nuevo Lead</td><td>En Conversación</td><td>Adrián responde primer mensaje</td></tr>
-            <tr><td>En Conversación</td><td>Calificado</td><td>Bot completa Add Contact Info con 4 campos</td></tr>
-            <tr><td>En Conversación</td><td>Descartado Bot</td><td>3 follow-ups sin respuesta</td></tr>
-            <tr><td>Calificado</td><td>Propiedades Enviadas</td><td>Bot envía links + Human Handover</td></tr>
+            <tr><td>(entrada)</td><td>Nuevo Lead</td><td><span class="pill pill-violet text-[10px]">auto</span> WF-00 Bienvenida al primer mensaje</td></tr>
+            <tr><td>Nuevo Lead</td><td>En Conversación</td><td><span class="pill pill-blue text-[10px]">manual</span> Asesor toma la conversación</td></tr>
+            <tr><td>En Conversación</td><td>Seguimiento</td><td><span class="pill pill-blue text-[10px]">manual</span> El asesor lo sigue trabajando pero dejó de responder</td></tr>
+            <tr><td>Nuevo Lead / En Conv.</td><td>Calificado / Propiedad Enviada</td><td><span class="pill pill-violet text-[10px]">auto</span> Bot termina 4 preguntas + envía link (WF-01)</td></tr>
+            <tr><td>Calificado / Prop. Enviada</td><td>No Responde</td><td><span class="pill pill-violet text-[10px]">auto</span> 2 hs sin respuesta post-propiedad (WF-01 → WF-02 dispara notif)</td></tr>
+            <tr><td>(cualquier etapa)</td><td>No Responde</td><td><span class="pill pill-blue text-[10px]">manual</span> Asesor archiva — WF-02 NO notifica (ya sabe)</td></tr>
             <tr><td>Visita Agendada</td><td>No Show</td><td>Broker marca "no asistió"</td></tr>
-            <tr><td>No Show</td><td>Propiedades Enviadas</td><td>Lead responde al follow-up de no-show</td></tr>
-            <tr><td>Propiedades Enviadas / Seguimiento Activo</td><td>Oportunidad Futura</td><td>Plazo >6 meses o lead sin actividad 30 días</td></tr>
+            <tr><td>No Show</td><td>Calificado / Prop. Enviada</td><td>Lead responde al follow-up de no-show</td></tr>
+            <tr><td>Calificado / Seguimiento Activo</td><td>Oportunidad Futura</td><td>Plazo &gt;6 meses o lead sin actividad 30 días</td></tr>
             <tr><td>Oportunidad Futura</td><td>En Conversación</td><td>Lead responde al boletín mensual</td></tr>
           </tbody>
         </table>
@@ -539,33 +538,37 @@
       <div class="mb-6">
         <span class="pill pill-amber font-mono mb-3 block w-fit">04 · Automatizaciones</span>
         <h2 class="text-2xl font-semibold text-white">Workflows clave</h2>
-        <p class="text-zinc-500 text-sm mt-1">5 workflows base del sistema · doble entrega: UI manual + Workflow AI Builder</p>
+        <p class="text-zinc-500 text-sm mt-1">7 workflows base del sistema · doble entrega: UI manual + Workflow AI Builder · <span class="text-blue-300">v1.4: WF-00 Bienvenida con Assign User inmediato + WF-01 Calificado refactor + WF-02 No Responde nuevo (reunión Pablo 28-may)</span></p>
       </div>
 
-      <!-- WF1 -->
+      <!-- WF0 - Bienvenida (antes WF-01) -->
       <details class="wf-card" open>
         <summary>
           <div class="flex items-center gap-3 flex-wrap">
-            <span class="pill pill-violet font-mono">WF-01</span>
-            <span class="text-white font-semibold">Inicio Bot · Bienvenida Adrián</span>
+            <span class="pill pill-violet font-mono">WF-00</span>
+            <span class="text-white font-semibold">Bienvenida Adrián · Crear oportunidad + asignar asesor</span>
             <span class="pill pill-zinc text-[10px]">Trigger: primer mensaje entrante</span>
+            <span class="pill pill-blue text-[10px]">refactor v1.4</span>
           </div>
         </summary>
         <div class="wf-body">
-          <p class="text-zinc-400 text-sm mb-4">Activa a Adrián cuando llega el primer mensaje en cualquier canal. Crea oportunidad en el pipeline.</p>
+          <p class="text-zinc-400 text-sm mb-4">Activa a Adrián al primer mensaje en cualquier canal. <strong>Cambio v1.4:</strong> crea la oportunidad en Nuevo Lead <strong>apenas entra</strong> (antes de activar el bot, no después del primer reply), y <strong>asigna asesor desde el primer mensaje</strong> — no recién al calificar. Razón: si el lead responde 1-2 preguntas y se enfría, el asesor ya está vinculado y puede levantar la conversación.</p>
           <table class="step-table mb-6">
             <thead><tr><th>Paso</th><th>Acción GHL</th><th>Config</th></tr></thead>
             <tbody>
               <tr><td>1 · Trigger</td><td>Customer Reply / Customer Changed</td><td>Filtro: Does NOT have tag <code>bot_adrián_activo</code></td></tr>
-              <tr><td>2 · Tag</td><td>Add Tag</td><td><code>bot_adrián_activo</code> — evita re-entrada</td></tr>
-              <tr><td>3 · Oportunidad</td><td>Create/Update Opportunity</td><td>Pipeline: Demanda · Stage: 01 Nuevo Lead</td></tr>
-              <tr><td>4 · Canal</td><td>Add Tag (condicional)</td><td>Si Instagram: <code>canal_instagram</code> · Si WhatsApp: <code>canal_whatsapp</code></td></tr>
-              <tr><td>5 · Activar bot</td><td>Activate Bot</td><td>Bot: Adrián · Dr House Bienes Raíces</td></tr>
+              <tr><td>2 · Remove from WF</td><td>Remove from Workflow</td><td>All workflows except current — evita re-entradas en otros flujos</td></tr>
+              <tr><td>3 · Tag</td><td>Add Tag</td><td><code>bot_adrián_activo</code></td></tr>
+              <tr><td>4 · Oportunidad</td><td>Create/Update Opportunity</td><td>Pipeline: Demanda · Stage: <strong>01 Nuevo Lead</strong> · Contact: <code>{{contact.name}}</code> · Status: <code>open</code> — <strong>todo lead entra acá automático</strong></td></tr>
+              <tr><td>5 · Asignar asesor</td><td>Assign User</td><td><strong>Asignación inmediata al responsable del canal</strong> (round-robin entre Adrián / Fernanda / Agustín). El asesor queda dueño del lead desde el primer mensaje, no recién al calificar.</td></tr>
+              <tr><td>6 · Canal</td><td>Add Tag (condicional)</td><td>Si Instagram: <code>canal_instagram</code> · Si WhatsApp: <code>canal_whatsapp</code></td></tr>
+              <tr><td>7 · Mensaje inicial</td><td>Send Message</td><td>"Hola, te comunicaste con Dr House Bienes Raíces. Contame, ¿en qué te puedo ayudar?"</td></tr>
+              <tr><td>8 · Activar bot</td><td>Activate Bot</td><td>Bot: Adrián · Dr House Bienes Raíces</td></tr>
             </tbody>
           </table>
           <p class="text-zinc-500 text-xs uppercase tracking-wider font-mono mb-3">Prompt Workflow AI Builder</p>
           <div class="prompt-wrap">
-            <div class="prompt-block amber" id="wf1-prompt">Crea un workflow llamado "WF-01 · Inicio Bot Adrián" con estas instrucciones: Trigger: Customer Reply (el cliente respondió por primera vez). Condición de entrada: el contacto NO tiene el tag bot_adrián_activo. Paso 1: aplicar tag bot_adrián_activo para evitar re-entradas. Paso 2: crear o actualizar oportunidad en el pipeline "Pipeline Demanda Dr House" en la etapa "01 Nuevo Lead". Paso 3: agregar tag según canal de origen — si el trigger viene de Instagram DM agregar tag canal_instagram, si viene de WhatsApp agregar tag canal_whatsapp. Paso 4: activar el bot de Conversation AI llamado "Adrián · Dr House Bienes Raíces". El objetivo es que cualquier lead que entre por primera vez quede en el pipeline y active a Adrián automáticamente, sin importar si entró por Instagram, WhatsApp o Facebook.</div>
+            <div class="prompt-block amber" id="wf1-prompt">Crea un workflow llamado "WF-00 · Bienvenida Adrián" con estas instrucciones: Trigger: Customer Reply (el cliente respondió por primera vez). Condición de entrada: el contacto NO tiene el tag bot_adrián_activo. Paso 1: ejecutar Remove from Workflow para todos los workflows excepto este, así evitamos que el contacto quede atrapado en flujos viejos. Paso 2: aplicar el tag bot_adrián_activo para evitar re-entradas. Paso 3: crear o actualizar la oportunidad del contacto en el pipeline "Pipeline Demanda Dr House" en la etapa "01 Nuevo Lead" con status open — TODO lead que entra por primera vez tiene que quedar en Nuevo Lead automáticamente, sin importar si después responde o no. Paso 4: ejecutar Assign User para asignar el contacto a un asesor responsable (round-robin entre Adrián, Fernanda y Agustín). Es importante asignar el asesor desde el primer mensaje, no recién cuando el lead califique, porque si el lead responde 1 o 2 preguntas y se enfría, el asesor ya tiene que estar vinculado para levantarlo manualmente. Paso 5: agregar el tag de canal — si el mensaje viene de Instagram DM agregar canal_instagram, si viene de WhatsApp agregar canal_whatsapp. Paso 6: enviar un mensaje de bienvenida que diga "Hola, te comunicaste con Dr House Bienes Raíces. Contame, ¿en qué te puedo ayudar?" — esto se hace por workflow y no por el bot, porque queremos tener control total del primer mensaje incluso si el contacto ya estaba en la plataforma por otro motivo. Paso 7: activar el bot de Conversation AI "Adrián · Dr House Bienes Raíces" para que tome el hilo de la conversación. El objetivo: ningún lead que entra queda sin oportunidad creada ni sin asesor asignado, desde el primer mensaje.</div>
             <button class="copy-btn" onclick="copyBlock(this,'wf1-prompt')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               Copiar
@@ -574,30 +577,68 @@
         </div>
       </details>
 
-      <!-- WF2 -->
+      <!-- WF-01 Calificado / Propiedad Enviada -->
       <details class="wf-card">
         <summary>
           <div class="flex items-center gap-3 flex-wrap">
-            <span class="pill pill-blue font-mono">WF-02</span>
-            <span class="text-white font-semibold">Lead Calificado → Asignación Broker</span>
+            <span class="pill pill-blue font-mono">WF-01</span>
+            <span class="text-white font-semibold">Calificado / Propiedad Enviada · Mover + Notificar + SMS seguimiento</span>
             <span class="pill pill-zinc text-[10px]">Trigger: tag lead_calificado</span>
+            <span class="pill pill-blue text-[10px]">refactor v1.4</span>
           </div>
         </summary>
         <div class="wf-body">
-          <p class="text-zinc-400 text-sm mb-4">Cuando Adrián completa la calificación, mueve el pipeline y asigna al broker según zona y monto.</p>
+          <p class="text-zinc-400 text-sm mb-4">Cuando Adrián completa las 4 preguntas y envía el link de propiedades, este workflow mueve la oportunidad a la <strong>etapa unificada "Calificado / Propiedad Enviada"</strong>, notifica al asesor (que ya está asignado desde WF-00), y dispara un SMS de seguimiento a las 2 horas. Si no responde, lo deriva al WF-02 No Responde.</p>
           <table class="step-table mb-6">
             <thead><tr><th>Paso</th><th>Acción GHL</th><th>Config</th></tr></thead>
             <tbody>
-              <tr><td>1 · Trigger</td><td>Tag Added</td><td>Tag: <code>lead_calificado</code></td></tr>
-              <tr><td>2 · Mover pipeline</td><td>Move Opportunity Stage</td><td>Stage: 03 Calificado → 05 Propiedades Enviadas</td></tr>
-              <tr><td>3 · Branch zona/monto</td><td>If/Else Condition</td><td>CF <code>zona preferida</code> + CF <code>presupuesto max usd</code> → asignar broker A o B <span class="pill pill-amber text-[10px]">⚠️ Confirmar reglas en R2</span></td></tr>
-              <tr><td>4 · Asignar</td><td>Assign User</td><td>Broker correspondiente según branch</td></tr>
-              <tr><td>5 · Notificar</td><td>Internal Notification</td><td>"Nuevo lead calificado: [nombre] · [zona] · [presupuesto USD] · [tipo]"</td></tr>
+              <tr><td>1 · Trigger</td><td>Tag Added</td><td>Tag: <code>lead_calificado</code> (lo aplica el bot al terminar Add Contact Info + envío de link)</td></tr>
+              <tr><td>2 · Mover pipeline</td><td>Create/Update Opportunity</td><td>Pipeline: Demanda · Stage: <strong>04 Calificado / Propiedad Enviada</strong> · Status: <code>open</code></td></tr>
+              <tr><td>3 · Notif interna al asesor</td><td>Internal Notification</td><td>"🏠 Lead calificado — propiedad enviada. {{contact.full_name}} · {{contact.zona_preferida}} · {{contact.presupuesto_max_usd}} USD · {{contact.tipo_propiedad}}. Ya completó las 4 preguntas."</td></tr>
+              <tr><td>4 · Email al asesor</td><td>Send Email</td><td>To: user email (asesor asignado) · From: <code>{{custom_values.correo_de_salida}}</code> · Subject: "Lead calificado — {{contact.first_name}}" · Body: resumen + link a la conversación en GHL</td></tr>
+              <tr><td>5 · Espera respuesta</td><td>Wait · Until Contact Replies</td><td>Timeout: <strong>2 horas</strong> (canal SMS/WhatsApp)</td></tr>
+              <tr><td>6 · Si responde →</td><td>Activate Bot</td><td>Bot Adrián retoma la conversación (puede seguir matcheando más propiedades / hacer handoff humano)</td></tr>
+              <tr><td>7 · Si NO responde →</td><td>SMS de re-enganche</td><td>"Hola {{contact.first_name}}, vi que no respondiste 👋 ¿Te interesa alguna de las propiedades que te mandé o querés que busquemos algo distinto?"</td></tr>
+              <tr><td>8 · Espera 2ª respuesta</td><td>Wait · Until Contact Replies</td><td>Timeout: <strong>2 horas más</strong></td></tr>
+              <tr><td>9 · Si sigue sin responder →</td><td>Create/Update Opportunity</td><td>Mover a <strong>05 No Responde</strong> · Status: <code>open</code> → esto dispara WF-02 No Responde</td></tr>
             </tbody>
           </table>
           <div class="prompt-wrap">
-            <div class="prompt-block amber" id="wf2-prompt">Crea un workflow llamado "WF-02 · Lead Calificado Asignación" con estas instrucciones: Trigger: Tag Added con el tag lead_calificado. Paso 1: mover la oportunidad del contacto en el pipeline Demanda a la etapa "05 Propiedades Enviadas". Paso 2: usar una condición If/Else para asignar el broker correcto según la zona preferida y el presupuesto máximo del contacto (los valores están en los custom fields zona preferida y presupuesto max usd). Los criterios de asignación se confirmarán en la próxima reunión. Paso 3: asignar el contacto al broker correspondiente con la acción Assign User. Paso 4: enviar una notificación interna al broker asignado con el resumen del lead: nombre, zona, presupuesto en USD y tipo de propiedad. El objetivo es que ningún lead calificado quede sin broker asignado en los primeros 5 minutos.</div>
+            <div class="prompt-block amber" id="wf2-prompt">Crea un workflow llamado "WF-01 · Calificado / Propiedad Enviada" con estas instrucciones: Trigger: Tag Added con el tag lead_calificado (el bot lo aplica cuando termina las 4 preguntas de calificación y manda el link de propiedades). Paso 1: mover la oportunidad del contacto al stage "04 Calificado / Propiedad Enviada" del pipeline Demanda con status open. Paso 2: enviar una notificación interna al asesor asignado (ya está asignado desde WF-00 Bienvenida) que diga "🏠 Lead calificado — propiedad enviada. Contacto: {{contact.full_name}}, zona {{contact.zona_preferida}}, presupuesto {{contact.presupuesto_max_usd}} USD, tipo {{contact.tipo_propiedad}}. Ya completó las 4 preguntas." Paso 3: enviar un email al asesor asignado usando como remitente {{custom_values.correo_de_salida}}, asunto "Lead calificado — {{contact.first_name}}" y cuerpo con el resumen del lead más el link a la conversación dentro de GHL. Paso 4: agregar una acción Wait until contact replies con timeout de 2 horas (canal SMS o WhatsApp según el canal del lead). Paso 5: si el contacto responde dentro de las 2 horas, ejecutar Activate Bot para que Adrián retome la conversación (puede mandar más propiedades, hacer handoff humano, etc.). Paso 6: si NO responde en 2 horas, enviar un SMS de re-enganche que diga "Hola {{contact.first_name}}, vi que no respondiste 👋 ¿Te interesa alguna de las propiedades que te mandé o querés que busquemos algo distinto?". Paso 7: otra acción Wait until contact replies con timeout de 2 horas más. Paso 8: si sigue sin responder, mover la oportunidad al stage "05 No Responde" del mismo pipeline — esto va a disparar el WF-02 No Responde que avisa al asesor. El objetivo: ningún lead que ya recibió la propiedad se pierde sin un segundo intento automático antes de archivarse.</div>
             <button class="copy-btn" onclick="copyBlock(this,'wf2-prompt')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+        </div>
+      </details>
+
+      <!-- WF-02 No Responde (nuevo en v1.4) -->
+      <details class="wf-card">
+        <summary>
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="pill pill-rose font-mono">WF-02</span>
+            <span class="text-white font-semibold">No Responde · Notificar solo si lo movió el bot</span>
+            <span class="pill pill-zinc text-[10px]">Trigger: Opportunity Status Changed → No Responde</span>
+            <span class="pill pill-blue text-[10px]">nuevo v1.4</span>
+          </div>
+        </summary>
+        <div class="wf-body">
+          <p class="text-zinc-400 text-sm mb-4">Workflow nuevo que sale de la reunión con Pablo. Se dispara cuando una oportunidad entra a "05 No Responde". La gracia es el <strong>If/Else por workflow trigger</strong>: si lo movió el bot (automático por WF-01), avisa al asesor por notif interna + email + asigna al usuario. Si lo movió un humano manualmente, no hace nada — el asesor ya sabe porque fue él quien lo movió. Sin esta lógica, el asesor recibiría notificaciones redundantes cuando archiva manual.</p>
+          <table class="step-table mb-6">
+            <thead><tr><th>Paso</th><th>Acción GHL</th><th>Config</th></tr></thead>
+            <tbody>
+              <tr><td>1 · Trigger</td><td>Opportunity Status Changed</td><td>Filtro: Pipeline = Demanda · Stage = <code>05 No Responde</code></td></tr>
+              <tr><td>2 · If/Else</td><td>Condition</td><td>Branch 1: <strong>"Movido por Bot"</strong> · workflow trigger <code>is not</code> Opportunity Change (vino del WF-01 automático) → ejecutar notificaciones · Branch 2: <strong>"Movido por Humano"</strong> · workflow trigger <code>is</code> Opportunity Change (lo movió un asesor manual) → no hacer nada</td></tr>
+              <tr><td>3a · [Rama Bot] Email asesor</td><td>Send Email</td><td>To: user email · From: <code>{{custom_values.correo_de_salida}}</code> · Subject: "🔴 Lead calificado no respondió — {{contact.first_name}}" · Body: "Ya se le enviaron las propiedades pero no respondió. Tomar el hilo manualmente."</td></tr>
+              <tr><td>3b · [Rama Bot] Notif interna</td><td>Internal Notification</td><td>"🏠❌ Lead calificado no responde. {{contact.full_name}} — ya se le enviaron las propiedades. Tomar conversación."</td></tr>
+              <tr><td>3c · [Rama Bot] Asignar</td><td>Assign User</td><td>Re-asignar al asesor responsable (por si quedó sin assign) para garantizar que alguien lo tome</td></tr>
+              <tr><td>4 · [Rama Humano] (vacío)</td><td>—</td><td>No se ejecuta ninguna acción: el humano lo movió a mano, ya sabe</td></tr>
+            </tbody>
+          </table>
+          <div class="prompt-wrap">
+            <div class="prompt-block amber" id="wf-noresp-prompt">Crea un workflow llamado "WF-02 · No Responde Adrián" con estas instrucciones: Trigger: Opportunity Status Changed, filtrado al pipeline "Pipeline Demanda Dr House" stage "05 No Responde". El workflow tiene una condición If/Else por el origen del cambio de etapa, porque queremos comportamientos distintos según si lo movió el bot o un humano. Branch 1 (llamarlo "Bot"): condición workflow trigger is not Opportunity Change — esto matchea cuando el contacto entra acá disparado desde otro workflow (típicamente WF-01 Calificado / Propiedad Enviada cuando el lead no respondió después de 2 horas). En esta rama hacer: paso 1, enviar un email al asesor asignado con remitente {{custom_values.correo_de_salida}}, asunto "🔴 Lead calificado no respondió — {{contact.first_name}}" y cuerpo "Ya se le enviaron las propiedades pero no respondió en 2 horas. Tomar el hilo manualmente cuando puedas." Paso 2, enviar una notificación interna que diga "🏠❌ Lead calificado no responde. {{contact.full_name}} — ya se le enviaron las propiedades. Tomar conversación." Paso 3, ejecutar Assign User para reasignar el contacto al asesor responsable, por si quedó sin asignación. Branch 2 (llamarlo "Humano"): condición workflow trigger is Opportunity Change — esto matchea cuando un asesor movió manualmente la oportunidad a "No Responde" desde la UI. En esta rama NO ejecutar ninguna acción: el humano ya sabe, lo movió él, no queremos generarle ruido. El objetivo: el asesor recibe avisos cuando el bot archiva un lead, pero no recibe avisos cuando archiva él mismo.</div>
+            <button class="copy-btn" onclick="copyBlock(this,'wf-noresp-prompt')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               Copiar
             </button>
@@ -1061,7 +1102,7 @@ Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precio
           <div class="space-y-1">
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear subaccount GHL para Dr House Bienes Raíces</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Conectar Instagram DM + WhatsApp + Facebook</span></label>
-            <label class="check-item"><input type="checkbox"><span class="check-label">Crear Pipeline Demanda (15 etapas · colores por zona)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear Pipeline Demanda (14 etapas · zona bot reestructurada v1.4: Nuevo Lead → En Conversación → Seguimiento → Calificado/Propiedad Enviada → No Responde)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear Pipeline Captación (7 etapas)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear carpeta "adrián bot" + 11 Custom Fields (todos TEXT)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear Custom Values (correo_de_salida, link_propiedades_venta_bajo/medio/alto, horario_atencion)</span></label>
@@ -1079,8 +1120,9 @@ Oferta propiedad caro: "Perfecto, lo entiendo. ¿Me contás qué rango de precio
             <label class="check-item"><input type="checkbox"><span class="check-label">Pegar Objective en Bot Goals</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Pegar Additional Information en Bot Goals</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Configurar Bot Actions (Add Contact Info · Human Handover · Stop Bot)</span></label>
-            <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-01 Inicio Bot Adrián</span></label>
-            <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-02 Lead Calificado → Asignación Broker</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-00 Bienvenida Adrián (Create Opp en Nuevo Lead + Assign User inmediato + Activate Bot)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-01 Calificado / Propiedad Enviada (mover stage + notif + SMS seguimiento 2h + branch a No Responde)</span></label>
+            <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-02 No Responde (If/Else: avisa al asesor solo si lo movió el bot, no si lo movió un humano)</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-03 Cadencia Re-engagement</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-04 No Show Recuperación</span></label>
             <label class="check-item"><input type="checkbox"><span class="check-label">Crear WF-05 Propietario Nuevo → Captación</span></label>
